@@ -121,6 +121,8 @@
         methods:{
             review(task){
                 alert("去审核");
+
+                this.$router.push('/canvas1');
             },
 
             pass(task){

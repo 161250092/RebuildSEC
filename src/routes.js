@@ -2,6 +2,7 @@ import Login from './views/Login.vue'
 import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
 import Main from './views/Main.vue'
+
  import Table from './views/nav1/Table.vue'
 // import Form from './views/nav1/Form.vue'
 // import user from './views/nav1/user.vue'
@@ -9,13 +10,15 @@ import Main from './views/Main.vue'
 //import Page5 from './views/nav2/Page5.vue'
 import cashInfo from './views/nav3/cashInfo.vue'
 import workInfo from './views/nav3/workInfo.vue'
-import echarts from './views/charts/echarts.vue'
+//import echarts from './views/charts/echarts.vue'
 import editorTaskDraft from './views/nav1/editorTaskDraft'
 import editorMassTaskDraft from './views/nav1/editorMassTaskDraft'
 import publishTask from './views/nav1/publishTask'
 import checkSubmittedLabel from './views/nav2/checkSubmittedLabel'
 import  completedTask from './views/nav2/completedTask'
 import personInformation from './views/nav4/personInformation'
+import  canvas1 from './views/workplace/canvas1'
+
 let routes = [
     {
         path: '/login',
@@ -74,14 +77,18 @@ let routes = [
         iconCls: 'fa fa-user-circle',
         children: [
             { path: '/personInformation', component: personInformation, name: '个人信息' },
+            { path: '/canvas1', component: canvas1, name: '工作台1', hidden: true },
             // { path: '/echarts', component: echarts, name: 'echarts' }
         ]
     },
+
     {
         path: '*',
         hidden: true,
         redirect: { path: '/404' }
-    }
+    },
+
+
 ];
 
 export default routes;

@@ -130,7 +130,9 @@
 			if (user) {
 				user = JSON.parse(user);
 				this.sysUserName = user.name || '';
-				this.sysUserAvatar = user.avatar || '';
+				//this.sysUserAvatar = user.avatar || '';
+				this.sysUserAvatar ="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3443176063,4021563566&fm=27&gp=0.jpg";
+
 			}
 
 		}
