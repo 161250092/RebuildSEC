@@ -5,12 +5,15 @@
         <el-table :data="tasks"  style="width: 100%">
             <el-table-column label="任务编号" prop="taskId"  >
             </el-table-column>
+            <el-table-column label="类型" prop="type">
+            </el-table-column>
 
             <el-table-column label="工人名称" prop="workerName" >
             </el-table-column>
 
             <el-table-column label="系统评分" prop="score">
             </el-table-column>
+
 
             <el-table-column label="" >
                 <template slot-scope="scope">
@@ -95,12 +98,14 @@
                         taskId:"31241251",
                         workerName:"hh",
                         score:89,
+                        type:"整体标注"
                     },
 
                     {
                         taskId:"4125121",
                         workerName:"hhh",
                         score:94,
+                        type:"区域标注"
                     },
 
 
@@ -108,6 +113,7 @@
                         taskId:"412412",
                         workerName:"ssss",
                         score:59,
+                        type:"方框标注"
                     },
 
 
@@ -120,9 +126,16 @@
         },
         methods:{
             review(task){
-                alert("去审核");
 
-                this.$router.push('/canvas1');
+                if(task.type==="整体标注"){
+                    alert("去审核");
+                    this.$router.push('/canvas1');
+                }
+                else if(task.type==="方框标注"){
+                    this.$router.push('/canvas2')
+                }
+                else
+                    alert("undo");
             },
 
             pass(task){

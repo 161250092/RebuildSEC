@@ -18,6 +18,7 @@ import checkSubmittedLabel from './views/nav2/checkSubmittedLabel'
 import  completedTask from './views/nav2/completedTask'
 import personInformation from './views/nav4/personInformation'
 import  canvas1 from './views/workplace/canvas1'
+import canvas2 from './views/workplace/canvas2'
 
 let routes = [
     {
@@ -78,6 +79,7 @@ let routes = [
         children: [
             { path: '/personInformation', component: personInformation, name: '个人信息' },
             { path: '/canvas1', component: canvas1, name: '工作台1', hidden: true },
+            { path: '/canvas2', component: canvas2, name: '工作台2', hidden:true}
             // { path: '/echarts', component: echarts, name: 'echarts' }
         ]
     },
