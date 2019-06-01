@@ -150,6 +150,14 @@
         methods:{
             mark(task){
                 alert("去标注");
+                if(task.type==="整体标注"){
+                    this.$router.push('/imgLabel');
+                }
+                else if(task.type==="方框标注"){
+                    this.$router.push('/frameLabel')
+                }
+                else
+                    this.$router.push('/areaLabel')
             },
 
             release(task){

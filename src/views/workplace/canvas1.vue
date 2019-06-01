@@ -1,28 +1,27 @@
 <template>
 <section>
 
-    <div>
-        <div id="canvasContainer" align="center">
-<!--            <canvas id="drawingCanvas">-->
-<!--            </canvas>-->
-            <img :src=currentImageUrl>
+
+    <div align="center" class="father">
+        <canvas id="canvas" width="650" height="414" class="canvas"/>
+        <img :src=currentImageUrl  class="canvas_bgp">
+
+        <div class="buttonPosition">
+            <el-button class="fa fa-arrow-left" @click="previewImg"></el-button>
+            <el-button class="fa fa-arrow-right" @click="nextImg"></el-button>
+            <p>{{currentIndex}}/{{totalNum}}</p>
         </div>
+
+        <div class="tagsPosition" align="center">
+            <el-table :data="tagsInShowing"  style="width: 30%" >
+                <el-table-column label="标签" prop="content">
+                </el-table-column>
+            </el-table>
+        </div>
+
     </div>
 
-    <div align="center">
-        <el-button class="fa fa-arrow-left" @click="previewImg"></el-button>
-        <el-button class="fa fa-arrow-right" @click="nextImg"></el-button>
-    </div>
-    <div align="center">
-        <p>{{currentIndex}}/{{totalNum}}</p>
-        <p align="center">标签</p>
-        <el-table :data="tagsInShowing"  style="width: 80%" >
-            <el-table-column label="Id" prop="tagsId">
-            </el-table-column>
-            <el-table-column label="标签" prop="content">
-            </el-table-column>
-        </el-table>
-    </div>
+
 
 </section>
 
@@ -151,4 +150,44 @@
 
 <style scoped>
 
+</style>
+<style lang="scss" scoped>
+
+    .buttonPosition{
+        top: 450px;
+        left: 0;
+        position: relative;
+    }
+    .tagsPosition{
+        top: 50px;
+        left: 450px;
+        position: relative;
+    }
+
+    .father{
+        /*标签位置设置为相对的*/
+        position: relative;
+        text-align: center;
+        width: 800px;
+    }
+    /*canvas的大小需要在起标签内设置，否则会拉伸或缩小默认的大小*/
+    .canvas{
+        border:5px solid black;
+        /*位置绝对*/
+        position: absolute;
+        top: 0;
+        left: 50px;
+        /*设置所在层数，在上层*/
+        z-index: 1;
+    }
+
+    /*需要将img背景图的尺寸和canvas的尺寸设置相同*/
+    .canvas_bgp{
+        width: 650px;
+        height: 414px;
+        /*位置绝对*/
+        position: absolute;
+        top: 0;
+        left: 50px;
+    }
 </style>

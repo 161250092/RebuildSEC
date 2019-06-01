@@ -19,6 +19,10 @@ import  completedTask from './views/nav2/completedTask'
 import personInformation from './views/nav4/personInformation'
 import  canvas1 from './views/workplace/canvas1'
 import canvas2 from './views/workplace/canvas2'
+import  canvas3 from './views/workplace/canvas3'
+import areaLabel from './views/workplace/areaLabel'
+import imgLabel from './views/workplace/imgLabel'
+import frameLabel from './views/workplace/frameLabel'
 
 let routes = [
     {
@@ -79,10 +83,30 @@ let routes = [
         children: [
             { path: '/personInformation', component: personInformation, name: '个人信息' },
             { path: '/canvas1', component: canvas1, name: '工作台1', hidden: true },
-            { path: '/canvas2', component: canvas2, name: '工作台2', hidden:true}
+            { path: '/canvas2', component: canvas2, name: '工作台2', hidden:true},
+            { path: '/canvas3', component: canvas3, name: '工作台3', hidden:true}
             // { path: '/echarts', component: echarts, name: 'echarts' }
         ]
     },
+
+    {
+        path: '/',
+        component: Home,
+        name: '标注样本',
+        iconCls: 'fa fa-user-circle',
+        hidden:true,
+        children:[
+            { path: '/imgLabel', component: imgLabel, name: '图片标注' },
+            { path: '/frameLabel', component:frameLabel,name:'方框标注'},
+            { path: '/areaLabel',component:areaLabel,name:'区域标注'}
+
+        ]
+
+    },
+
+
+
+
 
     {
         path: '*',

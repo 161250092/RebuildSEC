@@ -135,7 +135,7 @@
                     this.$router.push('/canvas2')
                 }
                 else
-                    alert("undo");
+                    this.$router.push('/canvas3')
             },
 
             pass(task){

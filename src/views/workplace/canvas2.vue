@@ -13,9 +13,7 @@
         </div>
 
         <div class="tagsPosition" align="center">
-            <el-table :data="tagsInShowing"  style="width: 80%" >
-                <el-table-column label="Id" prop="tagsId">
-                </el-table-column>
+            <el-table :data="tagsInShowing"  style="width: 30%" >
                 <el-table-column label="标签" prop="content">
                 </el-table-column>
             </el-table>
@@ -23,12 +21,7 @@
 
     </div>
 
-
-
-
     </section>
-
-
 
 
 </template>
@@ -172,8 +165,8 @@
         position: relative;
     }
     .tagsPosition{
-        top: 455px;
-        left: 35px;
+        top: 50px;
+        left: 450px;
         position: relative;
     }
 
@@ -189,7 +182,7 @@
         /*位置绝对*/
         position: absolute;
         top: 0;
-        left: 110px;
+        left: 50px;
         /*设置所在层数，在上层*/
         z-index: 1;
     }
@@ -201,6 +194,6 @@
         /*位置绝对*/
         position: absolute;
         top: 0;
-        left: 110px;
+        left: 50px;
     }
 </style>
