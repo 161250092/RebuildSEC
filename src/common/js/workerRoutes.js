@@ -33,7 +33,7 @@ export default (
             iconCls: 'fa fa-picture-o',//图标样式class
             children: [
                 { path: '/info', component: WorkerInfo, name: '个人信息' },
-                { path: '/history', component: WorkerHistory, name: '个人信息' },
+                { path: '/history', component: WorkerHistory, name: '历史记录' },
             ]
         }
     ]
