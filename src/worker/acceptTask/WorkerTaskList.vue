@@ -2,7 +2,8 @@
     <div>
         <div>
             <div>
-                <el-table :data="taskList" style="width: 100%">
+                <el-table :data="taskList"
+                          style="width: 100%">
 
                     <el-table-column type="expand">
                         <template slot-scope="props">
