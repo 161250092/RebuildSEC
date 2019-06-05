@@ -1,16 +1,21 @@
 <template>
     <div align="center" class="father">
-<!--        <div class="toolBar">-->
-<!--            <el-button>1</el-button>-->
-<!--            <el-button>1</el-button>-->
-<!--            <el-button>1</el-button>-->
-<!--            <el-button>1</el-button>-->
-<!--            <el-button>1</el-button>-->
-<!--        </div>-->
-        <canvas id="canvas" width="650" height="414" class="canvas"/>
+        <div class="toolBar">
+            <span class="demonstration">颜色选择器</span>
+            <el-color-picker v-model="color" @change="changeColor"></el-color-picker>
+        </div>
+        <canvas id="canvas" width="650" height="414" class="canvas"
+                v-on:mousedown="startDrawing"
+                v-on:mouseup="stopDrawing"
+                v-on:mouseout="stopDrawing"
+                v-on:mousemove="draw"
+        />
         <img :src=currentImageUrl  class="canvas_bgp">
 
         <div class="buttonPosition">
+            <div class="block">
+                <el-slider v-model="thickness" @change="changeThickness"></el-slider>
+            </div>
             <el-button class="fa fa-arrow-left" @click="previewImg"></el-button>
             <el-button class="fa fa-arrow-right" @click="nextImg"></el-button>
             <el-button  @click="saveRect" type="warning">保存</el-button>
@@ -67,30 +72,96 @@
                 canSubmit:false,
 
                 rectInShow:{},
-                rectsInfo:[]
+                rectsInfo:[],
+                color:'#409EFF',
+                thickness: 20,
 
+                canvas:undefined,
+                canvasContext:undefined,
+
+                isDrawing:false,
+
+                startX:0,
+                startY:0,
 
             }
 
         },
         methods: {
 
-            clear(){
-                let canvas = document.getElementById("canvas");
-                //获得2维绘图的上下文
-                let ctx = canvas.getContext("2d");
-                canvas.height = canvas.height;
-                ctx.lineWidth = 1;
-                ctx.strokeStyle = "red";
-                this.rectInShow = {};
+            startDrawing:function(ev){
+                if(this.isDrawing === false){
+                   // this.canvasContext.beginPath();
+                    this.startX =this.getX(ev);
+                    this.startY = this.getY(ev);
+                    this.isDrawing = true;
+                    //  this.canvasContext.moveTo(this.previousX, this.previousY);
+                }
 
+            },
+            stopDrawing: function (ev) {
+                //防止鼠标只是经过canvas
+                if(this.isDrawing === true){
+                    //this.tempImageData = this.canvasContext.getImageData(0, 0, this.canvas.width, this.canvas.height);
+                    //  this.canvasContext.closePath();
+                    let currentStartX = this.getX(ev);
+                    let currentStartY = this.getY(ev);
+                    //  this.canvasContext.lineTo(currentStartX, currentStartY);
+                    let w = Math.abs(this.startX-currentStartX);
+                    let h= Math.abs(this.startY-currentStartY);
+                    this.rectInShow = {x:this.startX,y:this.startY,width:w,height:h};
+                    this.isDrawing = false;
+                    this.canvasContext.stroke();
+                }
+            },
+
+            draw(ev){
+                if(this.isDrawing===true) {
+                    this.canvas.height =  this.canvas.height;
+                    let currentStartX = this.getX(ev);
+                    let currentStartY = this.getY(ev);
+                  //  this.canvasContext.lineTo(currentStartX, currentStartY);
+                    let width = Math.abs(this.startX-currentStartX);
+                    let height = Math.abs(this.startY-currentStartY);
+                    this.canvasContext.rect(this.startX,this.startY,width,height);
+                    this.canvasContext.stroke();
+                }
+            },
+
+            getX(ev) {
+                const rect = this.canvas.getBoundingClientRect();
+                return ev.clientX - rect.left;
+            },
+            getY(ev) {
+                const rect = this.canvas.getBoundingClientRect();
+                return ev.clientY - rect.top;
+            },
+
+            changeColor(){
+                this.canvas.height =  this.canvas.height;
+                this.canvasContext.strokeStyle = this.color;
+                this.drawRect();
+            },
+            changeThickness(){
+                this.canvas.height =  this.canvas.height;
+                this.canvasContext.lineWidth = this.thickness;
+                this.drawRect();
+            },
+
+            clear(){
+                this.canvas.height =  this.canvas.height;
+                this.canvasContext.strokeStyle = this.color;
+                this.rectInShow = {};
             },
 
             saveRect(){
              //   console.log(this.rectInShow);
                 this.rectsInfo[this.currentIndex-1]  = this.rectInShow;
               //  console.log(this.rectsInfo);
-                alert("已保存");
+                this.$message({
+                    message: '已保存',
+                    type: 'success'
+                });
             },
 
             addTags(){
@@ -131,46 +202,57 @@
             },
 
             submit(){
-                alert("已提交");
+                this.$message({
+                    message: '提交成功',
+                    type: 'success'
+                });
             },
 
 
             previewImg() {
-                this.clear();
+                this.canvas.height =  this.canvas.height;
                 if (this.currentIndex >= 2) {
                     this.currentIndex--;
                     this.currentImageUrl = this.imgUrl[this.currentIndex - 1];
                     this.tagsInShowing = this.tagsInfo[this.currentIndex - 1];
                     this.rectInShow = this.rectsInfo[this.currentIndex - 1];
                     this.drawRect();
-                } else
-                    alert("已经是第一张");
+                }
+                else
+                {
+                    this.$message({
+                        message: '第一张',
+                        type: 'warning'
+                    });
+                }
             },
 
 
             nextImg() {
-                this.clear();
+                this.canvas.height =  this.canvas.height;
                 if (this.currentIndex <= this.imgUrl.length-1) {
                     this.currentIndex++;
                     this.currentImageUrl = this.imgUrl[this.currentIndex - 1];
                     this.tagsInShowing = this.tagsInfo[this.currentIndex - 1];
                     this.rectInShow = this.rectsInfo[this.currentIndex - 1];
                     this.drawRect();
-                } else
-                    alert("已经是最后一张");
+                }
+                else
+                {
+                    this.$message({
+                        message: '最后一张',
+                        type: 'warning'
+                    });
+                }
 
             },
 
             drawRect(){
-                let canvas = document.getElementById("canvas");
-                //获得2维绘图的上下文
-                let ctx = canvas.getContext("2d");
-                //设置线宽
-                ctx.lineWidth = 1;
+                this.canvasContext.lineWidth = this.thickness/20;
                 //设置线的颜色
-                ctx.strokeStyle = "red";
-                ctx.rect(this.rectInShow.leftTopX,this.rectInShow.leftTopY,this.rectInShow.width,this.rectInShow.hight);
-                ctx.stroke();
+                this.canvasContext.strokeStyle = this.color;
+                this.canvasContext.rect(this.rectInShow.x,this.rectInShow.y,this.rectInShow.width,this.rectInShow.height);
+                this.canvasContext.stroke();
             }
 
         },
@@ -180,47 +262,13 @@
                 this.rectsInfo.push({});
             }
 
-            let canvas = document.getElementById("canvas");
+            this.canvas = document.getElementById("canvas");
             //获得2维绘图的上下文
-            let ctx = canvas.getContext("2d");
+            this.canvasContext = this.canvas.getContext("2d");
             //设置线宽
-            ctx.lineWidth = 1;
+            this.canvasContext.lineWidth = this.thickness/20;
             //设置线的颜色
-            ctx.strokeStyle = "red";
-            let _this = this;
-            canvas.onmousedown = function(e){
-                _this.rectInShow.leftTopX = e.clientX-300;
-                _this.rectInShow.leftTopY = e.clientY-100;
-                //
-                document.onmousemove = function(e){
-                    canvas.height = canvas.height;
-
-                    _this.rectInShow.rightDownX = e.clientX-300;
-                    _this.rectInShow.rightDownY = e.clientY-100;
-
-                    _this.rectInShow.hight = Math.abs(_this.rectInShow.rightDownY - _this.rectInShow.leftTopY);
-                    _this.rectInShow.width  =Math.abs( _this.rectInShow.leftTopX-_this.rectInShow.rightDownX);
-
-                    ctx.rect(_this.rectInShow.leftTopX,_this.rectInShow.leftTopY,_this.rectInShow.width,_this.rectInShow.hight);
-
-                    ctx.stroke();
-                };
-
-                document.onmouseup = function(e){
-                    _this.rectInShow.rightDownX = e.clientX-300;
-                    _this.rectInShow.rightDownY = e.clientY-100;
-
-                    _this.rectInShow.hight = Math.abs(_this.rectInShow.rightDownY - _this.rectInShow.leftTopY);
-                    _this.rectInShow.width  =Math.abs( _this.rectInShow.leftTopX-_this.rectInShow.rightDownX);
-
-                    ctx.rect(_this.rectInShow.leftTopX,_this.rectInShow.leftTopY,_this.rectInShow.width,_this.rectInShow.hight);
-                    _this.rectsInfo[_this.currentIndex-1] = _this.rectInShow;
-
-                    document.onmousemove = null;
-                    document.onmouseup = null;
-                }
-            };
-
+            this.canvasContext.strokeStyle = this.color;
         }
     }
 </script>
@@ -260,7 +308,6 @@
     }
 
     .toolBar{
-        border:5px solid black;
         position: absolute;
         top: 0;
         left: 50px;

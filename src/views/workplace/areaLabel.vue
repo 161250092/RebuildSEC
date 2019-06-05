@@ -1,9 +1,23 @@
 <template>
     <div align="center" class="father">
-        <canvas id="canvas" width="650" height="414" class="canvas"/>
+
+        <div class="toolBar">
+            <span class="demonstration">颜色选择器</span>
+            <el-color-picker v-model="color" @change="changeColor"></el-color-picker>
+        </div>
+        <canvas id="canvas" width="650" height="414" class="canvas"
+        ref="canvas"
+        v-on:mousedown="startDrawing"
+        v-on:mouseup="stopDrawing"
+        v-on:mouseout="stopDrawing"
+        v-on:mousemove="draw"
+        />
         <img :src=currentImageUrl  class="canvas_bgp">
 
         <div class="buttonPosition">
+            <div class="block">
+                <el-slider v-model="thickness" @change="changeThickness"></el-slider>
+            </div>
             <el-button class="fa fa-arrow-left" @click="previewImg"></el-button>
             <el-button class="fa fa-arrow-right" @click="nextImg"></el-button>
             <el-button  @click="saveLines" type="warning">保存</el-button>
@@ -59,29 +73,82 @@
                 canSubmit:false,
 
                 pointsInShow:[],
-                pointsInfo:[]
+                pointsInfo:[],
+                canvas:undefined,
+                canvasContext:undefined,
+                thickness:20,
+                color:"#409EFF",
+                isDrawing:false,
+
 
 
             }
 
         },
         methods: {
+            changeColor(){
+                this.canvas.height =  this.canvas.height;
+                this.canvasContext.strokeStyle = this.color;
+                this.drawLine();
+            },
+
+            changeThickness(){
+                this.canvas.height =  this.canvas.height;
+                this.canvasContext.lineWidth = this.thickness;
+                this.drawLine();
+            },
+            startDrawing:function(ev){
+                if(this.isDrawing === false){
+                    this.canvasContext.beginPath();
+                    this.isDrawing = true;
+                  //  this.canvasContext.moveTo(this.previousX, this.previousY);
+                }
+
+            },
+            stopDrawing: function () {
+                //防止鼠标只是经过canvas
+                if(this.isDrawing === true){
+                    //this.tempImageData = this.canvasContext.getImageData(0, 0, this.canvas.width, this.canvas.height);
+                  //  this.canvasContext.closePath();
+                    this.isDrawing = false;
+                    this.canvasContext.stroke();
+                }
+            },
+
+            draw(ev){
+                if(this.isDrawing===true) {
+                    let currentStartX = this.getX(ev);
+                    let currentStartY = this.getY(ev);
+                    this.canvasContext.lineTo(currentStartX, currentStartY);
+                    this.canvasContext.stroke();
+                    this.pointsInShow.push({x: currentStartX, y: currentStartY});
+                }
+            },
+
+            getX(ev) {
+                const rect = this.canvas.getBoundingClientRect();
+                return ev.clientX - rect.left;
+            },
+            getY(ev) {
+                const rect = this.canvas.getBoundingClientRect();
+                return ev.clientY - rect.top;
+            },
 
             clear(){
-                let canvas = document.getElementById("canvas");
-                //获得2维绘图的上下文
-                let ctx = canvas.getContext("2d");
-                canvas.height = canvas.height;
-                ctx.lineWidth = 1;
-                ctx.strokeStyle = "red";
-                this.pointsInShow[this.currentIndex-1] = [];
-
+             //  重制canvas，不然会出现奇怪的问题
+                this.canvas.height =  this.canvas.height;
+                this.canvasContext.strokeStyle = this.color;
+                this.pointsInfo[this.currentIndex-1] = [];
+                this.pointsInShow = [];
             },
 
             saveLines(){
-                //this.pointsInfo.push(this.pointsInShow);
                 this.pointsInfo[this.currentIndex-1]  = this.pointsInShow;
-                alert("已保存");
+              //  console.log(this.pointsInfo);
+                this.$message({
+                    message: '已保存',
+                    type: 'success'
+                });
             },
 
             addTags(){
@@ -120,52 +187,60 @@
                 }
 
             },
-
             submit(){
-                alert("已提交");
+                this.$message({
+                    message: '提交成功',
+                    type: 'success'
+                });
             },
-
-
             previewImg() {
-                this.clear();
+               // this.canvasContext.clearRect(0,0,this.canvas.width,this.canvas.height);
+                this.canvas.height =  this.canvas.height;
                 if (this.currentIndex >= 2) {
                     this.currentIndex--;
                     this.currentImageUrl = this.imgUrl[this.currentIndex - 1];
                     this.tagsInShowing = this.tagsInfo[this.currentIndex - 1];
+                  //  console.log( this.pointsInfo[this.currentIndex - 1]);
                     this.pointsInShow = this.pointsInfo[this.currentIndex - 1];
                     this.drawLine();
-                } else
-                    alert("已经是第一张");
-
+                } else{
+                    this.$message({
+                        message: '第一张',
+                        type: 'warning'
+                    });
+                }
 
             },
             nextImg() {
-                this.clear();
+           //     this.canvasContext.clearRect(0,0,this.canvas.width,this.canvas.height);
+                this.canvas.height =  this.canvas.height;
                 if (this.currentIndex <= this.imgUrl.length-1) {
                     this.currentIndex++;
                     this.currentImageUrl = this.imgUrl[this.currentIndex - 1];
                     this.tagsInShowing = this.tagsInfo[this.currentIndex - 1];
+                 //   console.log( this.pointsInfo[this.currentIndex - 1]);
                     this.pointsInShow = this.pointsInfo[this.currentIndex - 1];
                     this.drawLine();
-                } else
-                    alert("已经是最后一张");
+                } else{
+                    this.$message({
+                        message: '最后一张',
+                        type: 'warning'
+                    });
+                }
+
 
             },
 
             drawLine(){
-                let canvas = document.getElementById("canvas");
-                //获得2维绘图的上下文
-                let ctx = canvas.getContext("2d");
-                //设置线宽
-                ctx.lineWidth = 1;
+                this.canvasContext.lineWidth = this.thickness/20;
                 //设置线的颜色
-                ctx.strokeStyle = "red";
-
-                for(let i=0;i<this.pointsInShow.length;i++){
-                    ctx.lineTo(this.pointsInShow[i].x,this.pointsInShow[i].y);
-                    ctx.stroke();
+                this.canvasContext.strokeStyle = this.color;
+            //    this.canvasContext.moveTo(this.pointsInShow[0].x,this.pointsInShow[0].y);
+                for(let i=1;i<this.pointsInShow.length;i++){
+                    this.canvasContext.lineTo(this.pointsInShow[i].x,this.pointsInShow[i].y);
+                    this.canvasContext.stroke();
                 }
-
+                this.canvasContext.closePath();
             }
 
 
@@ -175,30 +250,13 @@
             for(let i=0;i<this.imgUrl.length;i++){
                 this.pointsInfo.push([]);
             }
-            let canvas = document.getElementById("canvas");
+            this.canvas = document.getElementById("canvas");
             //获得2维绘图的上下文
-            let ctx = canvas.getContext("2d");
+            this.canvasContext = this.canvas.getContext("2d");
             //设置线宽
-            ctx.lineWidth = 1;
+            this.canvasContext.lineWidth = this.thickness/20;
             //设置线的颜色
-            ctx.strokeStyle = "red";
-            let _this = this;
-            canvas.onmousedown = function(e){
-             //   ctx.moveTo(e.clientX-300,e.clientY-100);
-                document.onmousemove = function(e){
-                   // console.log(e.clientX+" "+e.clientY);
-                    ctx.lineTo(e.clientX-300, e.clientY-100);
-                    _this.pointsInShow.push({x:e.clientX-300,y:e.clientY-100});
-                  // console.log(e.clientX,e.clientY);
-                    ctx.stroke();
-                };
-                document.onmouseup = function(){
-                    document.onmousemove = null;
-                    document.onmouseup = null;
-                    console.log(_this.pointsInShow);
-                }
-            };
-
+            this.canvasContext.strokeStyle = this.color;
         }
 
     }
@@ -238,7 +296,6 @@
     }
 
     .toolBar{
-        border:5px solid black;
         position: absolute;
         top: 0;
         left: 50px;

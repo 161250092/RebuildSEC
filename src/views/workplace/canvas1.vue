@@ -123,8 +123,12 @@
                     this.currentImageUrl = this.imgUrl[this.currentIndex-1];
                     this.tagsInShowing = this.tagsInfo[this.currentIndex-1];
                 }
-                else
-                    alert("已经是第一张");
+                else{
+                    this.$message({
+                        message: '第一张',
+                        type: 'warning'
+                    });
+                }
 
 
             },
@@ -134,8 +138,13 @@
                     this.currentImageUrl = this.imgUrl[this.currentIndex-1];
                     this.tagsInShowing = this.tagsInfo[this.currentIndex-1];
                 }
-                else
-                    alert("已经是最后一张");
+                else{
+                    this.$message({
+                        message: '最后一张',
+                        type: 'warning'
+                    });
+                }
+
             }
 
         },

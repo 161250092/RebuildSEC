@@ -17,7 +17,7 @@
                         </el-form-item>
 
 
-                        <el-form-item  label="余额">
+                        <el-form-item  label="余额(元)">
                             <span>{{details.balance}} </span>
                         </el-form-item>
 

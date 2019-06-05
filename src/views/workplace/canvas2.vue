@@ -119,7 +119,12 @@
                     this.tagsInShowing = this.tagsInfo[this.currentIndex-1];
                 }
                 else
-                    alert("已经是第一张");
+                {
+                    this.$message({
+                        message: '第一张',
+                        type: 'warning'
+                    });
+                }
 
 
             },
@@ -130,7 +135,12 @@
                     this.tagsInShowing = this.tagsInfo[this.currentIndex-1];
                 }
                 else
-                    alert("已经是最后一张");
+                {
+                    this.$message({
+                        message: '最后一张',
+                        type: 'warning'
+                    });
+                }
             }
 
         },
