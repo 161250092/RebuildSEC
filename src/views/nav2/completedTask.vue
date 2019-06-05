@@ -65,6 +65,21 @@
                 :total="1000">
         </el-pagination>
 
+        <el-dialog title="下载" :visible.sync="showDownloadChoices" width="30%" :close-on-click-modal="false"
+                   :close-on-press-escape="false">
+            <el-select  placeholder="请选择下载方式" v-model="downloadStyle">
+                <el-option label="原格式" value="1"></el-option>
+                <el-option label="转jpg" value="2"></el-option>
+                <el-option label="转png" value="3"></el-option>
+            </el-select>
+
+
+            <div slot="footer" class="dialog-footer">
+                <el-button type="danger" @click="showDownloadInfo">确认</el-button>
+                <el-button type="primary" @click="showDownloadChoices = false">取消</el-button>
+            </div>
+        </el-dialog>
+
     </section>
 </template>
 
@@ -123,7 +138,9 @@
                         state:"拒绝",
                         reward:0
                     }
-                ]
+                ],
+                showDownloadChoices:false,
+                downloadStyle:"",
             }
 
         },
@@ -139,8 +156,15 @@
                 });
             },
 
-            download(){
-                alert("emmm");
+            showDownloadInfo(){
+                this.$message({
+                    message:"已加入下载入伍",
+                    type:"success"
+                });
+                this.showDownloadChoices = false;
+            },
+            download(task){
+                this.showDownloadChoices = true;
             }
         }
 

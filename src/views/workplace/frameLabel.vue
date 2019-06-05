@@ -299,6 +299,7 @@
     /*canvas的大小需要在起标签内设置，否则会拉伸或缩小默认的大小*/
     .canvas{
         border:5px solid black;
+        cursor:url("../../assets/pen.png"),crosshair;
         /*位置绝对*/
         position: absolute;
         top: 50px;

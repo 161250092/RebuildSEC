@@ -11,6 +11,7 @@
         v-on:mouseup="stopDrawing"
         v-on:mouseout="stopDrawing"
         v-on:mousemove="draw"
+        style="cursor:crosshair"
         />
         <img :src=currentImageUrl  class="canvas_bgp">
 
@@ -101,6 +102,7 @@
                 if(this.isDrawing === false){
                     this.canvasContext.beginPath();
                     this.isDrawing = true;
+                 //   document.style.cursor = 'pointer'
                   //  this.canvasContext.moveTo(this.previousX, this.previousY);
                 }
 
@@ -288,6 +290,7 @@
     .canvas{
         border:5px solid black;
         /*位置绝对*/
+        cursor:url("../../assets/pen.png"),crosshair;
         position: absolute;
         top: 50px;
         left: 50px;
