@@ -8,11 +8,13 @@ import cashInfo from './views/nav3/cashInfo.vue'
 import workInfo from './views/nav3/workInfo.vue'
 //import echarts from './views/charts/echarts.vue'
 
+ import homeRoutes from "./common/js/homeRoutes";
 import requesterRoutes from "./common/js/requesterRoutes";
 import workerRoutes from "./common/js/workerRoutes";
 
 let routes = [];
 
+routes = routes.concat(homeRoutes);
 routes = routes.concat(requesterRoutes);
 routes = routes.concat(workerRoutes);
 console.log(routes);
