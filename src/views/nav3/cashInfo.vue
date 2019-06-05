@@ -1,28 +1,67 @@
 <template>
 <!--    	<p align="center" style="color: #409EFF;font-weight: bold;font-size: 18px;">资金流动</p>-->
-    	<el-table :data="cashInfo"  style="width: 100%">
-    		<el-table-column label="消息Id" prop="messageId">
-    		</el-table-column>
+	<section>
+		<div align="center" style="color: #409EFF;font-weight: bold;font-size: 18px;">收入</div>
+		<el-table :data="cashInfo"  style="width: 100%">
+			<el-table-column label="消息Id" prop="messageId">
+			</el-table-column>
 
-    		<el-table-column label="类型" prop="type">
-    		</el-table-column>
+			<el-table-column label="数额" prop="quantity">
+			</el-table-column>
 
-    		<el-table-column label="数额" prop="quantity">
-    		</el-table-column>
+			<el-table-column label="原因" prop="reason">
+			</el-table-column>
 
-    		<el-table-column label="原因" prop="reason">
-    		</el-table-column>
+			<el-table-column label="">
+				<template slot-scope="scope">
+					<el-button
+							size="mini"
+							type="success"
+							@click="confirm(scope.row)">已了解
+					</el-button>
+				</template>
+			</el-table-column>
+		</el-table>
 
-    		<el-table-column label="">
-    			<template slot-scope="scope">
-    				<el-button
-    						size="mini"
-    						type="success"
-    						@click="confirm(scope.row)">已了解
-    				</el-button>
-    			</template>
-    		</el-table-column>
-    	</el-table>
+		<br>
+		<el-pagination
+				background
+				layout="prev, pager, next"
+				:total="1000">
+		</el-pagination>
+
+
+		<br>
+		<div align="center" style="color: #ff7238;font-weight: bold;font-size: 18px;">支出</div>
+
+		<el-table :data="cashInfo"  style="width: 100%">
+			<el-table-column label="消息Id" prop="messageId">
+			</el-table-column>
+
+			<el-table-column label="数额" prop="quantity">
+			</el-table-column>
+
+			<el-table-column label="原因" prop="reason">
+			</el-table-column>
+
+			<el-table-column label="">
+				<template slot-scope="scope">
+					<el-button
+							size="mini"
+							type="success"
+							@click="confirm(scope.row)">已了解
+					</el-button>
+				</template>
+			</el-table-column>
+		</el-table>
+		<el-pagination
+				background
+				layout="prev, pager, next"
+				:total="1000">
+		</el-pagination>
+	</section>
+
+
 </template>
 
 <script>
@@ -55,7 +94,10 @@
         },
         methods:{
             confirm(task){
-                alert("got it");
+				this.$message({
+					message: '已了解',
+					type: 'success'
+				});
             }
         }
     }
