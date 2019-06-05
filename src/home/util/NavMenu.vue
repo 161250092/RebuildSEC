@@ -56,6 +56,7 @@
                 seen: !this.isCollapsed(),
                 mode: this.isCollapsed() ? "vertical":"horizontal",
                 menuIndex: '0',
+                backgroundColor: '#222',
                 logoUrl: require("@/assets/logo.png")
             }
         },
@@ -148,6 +149,26 @@
         height: 0.15em;
         border-radius: 0.1em;
         margin-top: 0.2em;
+    }
+
+    .el-menu{
+        background-color: #222;
+    }
+
+    .el-menu-item{
+        opacity: 0.9;
+        color: #fff;
+    }
+
+    .el-menu-item:hover{
+        opacity: 1;
+        background-color: #000;
+        border-bottom-color: #000;
+    }
+
+    .is-active{
+        color: #ffd04b;
+        border-bottom-color: #ffd04b;
     }
 
 
