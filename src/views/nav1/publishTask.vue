@@ -161,7 +161,11 @@
             },
 
             release(task){
-                alert("已发布");
+                this.$message({
+                    message: '已发布',
+                    type: 'success'
+                });
+               this.taskWaitingForRelease.pop();
             },
 
             edit(task){
@@ -171,7 +175,11 @@
 
             deleteTask(task){
                 console.log(task);
-                alert("已删除");
+                this.taskWaitingForRelease.pop();
+                this.$message({
+                    message: '已删除',
+                    type: 'success'
+                });
             }
 
         }

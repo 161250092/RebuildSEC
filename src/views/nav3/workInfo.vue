@@ -1,7 +1,9 @@
 <template>
 <!--	<p align="center" style="color: #409EFF;font-weight: bold;font-size: 18px;">任务申请</p>-->
 	<section>
-	<el-table :data="requests"  style="width: 100%">
+		<div align="center" style="color: #409EFF;font-weight: bold;font-size: 18px;">待审核任务</div>
+
+		<el-table :data="requests"  style="width: 100%">
 		<el-table-column label="消息Id" prop="messageId">
 		</el-table-column>
 
@@ -24,6 +26,17 @@
 			</template>
 		</el-table-column>
 	</el-table>
+		<el-pagination
+				background
+				layout="prev, pager, next"
+				:total="1000">
+		</el-pagination>
+		<br>
+
+
+
+
+
 	</section>
 </template>
 
@@ -61,7 +74,10 @@
 		},
 		methods: {
 			getIt(task){
-				alert("got it");
+				this.$message({
+					message: '已了解',
+					type: 'success'
+				});
 			},
 		},
 		mounted() {

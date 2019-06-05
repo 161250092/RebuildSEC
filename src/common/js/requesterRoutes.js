@@ -68,7 +68,7 @@ export default (
     {
         path: '/',
         component: Home,
-        name: '消息',
+        name: '发布者消息',
         iconCls: 'fa fa-comment-o',
         children: [
             { path: '/cashInfo', component: cashInfo, name: '收支消息' },
@@ -78,7 +78,7 @@ export default (
     {
         path: '/',
         component: Home,
-        name: '个人中心',
+        name: '发布者个人中心',
         iconCls: 'fa fa-user-circle',
         children: [
             { path: '/personInformation', component: personInformation, name: '个人信息' },

@@ -24,7 +24,22 @@
                 </template>
             </el-table-column>
 
+            <el-table-column label="下载" >
+                <template slot-scope="scope">
+                    <el-button
+                            size="mini"
+                            type="primary"
+                            @click="download(scope.row)">下载
+                    </el-button>
+                </template>
+            </el-table-column>
+
         </el-table>
+        <el-pagination
+                background
+                layout="prev, pager, next"
+                :total="1000">
+        </el-pagination>
         <br>
 
         <div v-if="showInfo" align="center" style="color: #409EFF;font-weight: bold;font-size: 18px;">详情</div>
@@ -43,6 +58,12 @@
             </el-table-column>
         </el-table>
 
+        <el-pagination
+                v-if="showInfo"
+                background
+                layout="prev, pager, next"
+                :total="1000">
+        </el-pagination>
 
     </section>
 </template>
@@ -111,6 +132,15 @@
             check(task){
                 //this.details = task;
                 this.showInfo = true;
+
+                this.$message({
+                    message: '详情如下',
+                    type: 'success'
+                });
+            },
+
+            download(){
+                alert("emmm");
             }
         }
 

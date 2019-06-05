@@ -1,7 +1,9 @@
 <template>
     <section>
-    <el-form  label-width="200px" style="margin:20px;width:60%;min-width:600px;">
+        <div class="father" >
 
+        <div id="form">
+    <el-form  label-width="320px" style="margin:20px;width:60%;min-width:600px;">
         <el-form-item  label="标注类型">
             <el-select  placeholder="请选择标注类型" v-model="markType">
                 <el-option label="整体标注" value="1"></el-option>
@@ -19,7 +21,7 @@
         </el-form-item>
 
         <el-form-item  label="标注人数">
-            <el-input size="small" style="width:200px" v-model="peopleNum"></el-input>
+            <el-input size="small" style="width:200px" v-model="peopleNum" @change="computeTotalPrice"></el-input>
         </el-form-item>
 
 
@@ -33,12 +35,12 @@
             </el-input>
         </el-form-item>
 
-        <el-form-item  label="单张图片单价(单位:元)">
-            <el-input size="small" style="width:200px" v-model="singleImgPrice"></el-input>
-        </el-form-item>
+<!--        <el-form-item  label="单张图片单价(单位:元)">-->
+<!--            <el-input size="small" style="width:200px" v-model="singleImgPrice"></el-input>-->
+<!--        </el-form-item>-->
 
         <el-form-item  label="图片单价(单位:元)">
-            <el-input size="small" style="width:200px" v-model="singlePrice"></el-input>
+            <el-input size="small" style="width:200px" v-model="singlePrice" @change="computeTotalPrice"></el-input>
         </el-form-item>
 
         <el-form-item label="总价(单位:元)">
@@ -62,10 +64,16 @@
         </el-form-item>
 
         <el-form-item>
-            <el-button style="margin-left: 0px;" size="small" type="success" @click="saveAsDraft">保存为草稿</el-button>
+            <el-button style="margin-left: 0px;"  size="small" type="success" @click="saveAsDraft">保存为草稿</el-button>
+            <el-button style="margin-left: 0px;"  size="small" type="success" @click="makeSample" v-if="canJump">去标注</el-button>
         </el-form-item>
-
     </el-form>
+        </div>
+
+
+
+        </div>
+
     </section>
 </template>
 
@@ -82,17 +90,42 @@
                 quality:'',
                 taskId: "16250092",
                 peopleNum:0,
-                taskDescription:"....",
-                singleImgPrice:0.0,
-                singlePrice:0.0
+                taskDescription:"",
+                //singleImgPrice:0.0,
+                singlePrice:0.0,
+                active:1,
+                number:1,
+                canJump:false
             }
         },
         methods: {
+
+            computeTotalPrice(){
+              this.totalPrice = this.singlePrice*this.peopleNum;
+              if(this.totalPrice===0)
+                  this.canJump  = false;
+            },
             onSubmit() {
                 console.log('submit!');
             },
             saveAsDraft(){
-                alert("已存");
+                if(this.totalPrice!==0&&this.markType!==""&&this.quality!==""&&this.taskDescription!==""&&this.totalPrice!==0){
+                    this.canJump = true;
+                    this.$message({
+                        message: '提交成功',
+                        type: 'success'
+                    });
+                }
+                else{
+                    this.$message({
+                        message: '信息不全',
+                        type: 'danger'
+                    });
+                }
+            },
+
+            makeSample(){
+                this.$router.push('/publishTask')
             },
             submitUpload() {
                 this.$refs.upload.submit();
@@ -109,3 +142,19 @@
 
 </script>
 
+<style lang="scss" scoped>
+
+    .father{
+        /*标签位置设置为相对的*/
+        position: relative;
+        text-align: center;
+        width: 800px;
+    }
+
+    .form{
+        top: 0;
+        left: 0;
+        position: absolute;
+    }
+
+</style>
