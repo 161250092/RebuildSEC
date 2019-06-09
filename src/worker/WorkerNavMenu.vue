@@ -28,6 +28,7 @@
     import NavMenu from "../components/NavMenu";
     import routes from "../common/js/workerRoutes"
 
+
     // worker: {
     //    ID: 'A2GCPZ6HVH27EN',
     //    name: '工人1'，

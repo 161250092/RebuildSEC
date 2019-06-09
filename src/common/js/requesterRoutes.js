@@ -1,6 +1,6 @@
 import Login from '../../views/Login.vue'
 import NotFound from '../../views/404.vue'
-import Home from '../../views/Home.vue'
+import requestorMenu from '../../views/requestorMenu.vue'
 import Main from '../../views/Main.vue'
 
 import editorTaskDraft from '../../views/nav1/editorTaskDraft'
@@ -15,7 +15,6 @@ import  canvas3 from '../../views/workplace/canvas3'
 import areaLabel from '../../views/workplace/areaLabel'
 import imgLabel from '../../views/workplace/imgLabel'
 import frameLabel from '../../views/workplace/frameLabel'
-
 // import Form from '../../views/nav1/Form.vue'
 // import user from '../../views/nav1/user.vue'
 // import Page4 from '../../views/nav2/Page4.vue'
@@ -39,8 +38,8 @@ export default (
     },
     //{ path: '/main', component: Main },
     {
-        path: '/',
-        component: Home,
+        path: '/request',
+        component: requestorMenu,
         name: '任务发布中心',
         iconCls: 'fa fa-picture-o',//图标样式class
         children: [
@@ -54,8 +53,8 @@ export default (
         ]
     },
     {
-        path: '/',
-        component: Home,
+        path: '/request',
+        component: requestorMenu,
         name: '审核中心',
         iconCls: 'fa fa-id-card-o',
         children: [
@@ -66,8 +65,8 @@ export default (
         ]
     },
     {
-        path: '/',
-        component: Home,
+        path: '/request',
+        component: requestorMenu,
         name: '发布者消息',
         iconCls: 'fa fa-comment-o',
         children: [
@@ -76,8 +75,8 @@ export default (
         ]
     },
     {
-        path: '/',
-        component: Home,
+        path: '/request',
+        component: requestorMenu,
         name: '发布者个人中心',
         iconCls: 'fa fa-user-circle',
         children: [
@@ -90,8 +89,8 @@ export default (
     },
 
     {
-        path: '/',
-        component: Home,
+        path: '/request',
+        component: requestorMenu,
         name: '标注样本',
         iconCls: 'fa fa-user-circle',
         hidden:true,
@@ -103,9 +102,6 @@ export default (
         ]
 
     },
-
-
-
 
 
     {
