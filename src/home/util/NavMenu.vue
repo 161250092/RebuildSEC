@@ -50,12 +50,11 @@
     //  }
     export default {
         name: "NavMenu",
-        props: ['leftMenuItemList', 'rightMenuItemList'],
+        props: ['menuIndex', 'leftMenuItemList', 'rightMenuItemList'],
         data() {
             return {
                 seen: !this.isCollapsed(),
                 mode: this.isCollapsed() ? "vertical":"horizontal",
-                menuIndex: '0',
                 backgroundColor: '#222',
                 logoUrl: require("@/assets/logo.png")
             }
