@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <NavMenu v-bind:menu-index="menuIndex" v-bind:left-menu-item-list="leftMenuItemList" v-bind:right-menu-item-list="rightMenuItemList"/>
+            <RequesterHomeNav v-bind:menu-index="menuIndex"/>
         </div>
 
         <div class="banner">
@@ -14,38 +14,22 @@
             <ContentGroup v-bind:content-group="frameMark"></ContentGroup>
             <ContentGroup v-bind:content-group="areaMark"></ContentGroup>
         </div>
-
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
     import Banner from '../util/Banner';
-    import NavMenu from '../util/NavMenu';
+    import RequesterHomeNav from "./RequesterHomeNav";
     import ContentGroup from "../util/ContentGroup";
     export default {
         name: "RequesterHome",
         components: {
-            ContentGroup,
-            NavMenu, Banner
+            RequesterHomeNav, Banner, ContentGroup
         },
         data() {
             return {
                 menuIndex: '0',
-                leftMenuItemList: [
-                    {
-                        optionName: '产品介绍',
-                        url: '/requesterHome'
-                    },
-                    {
-                        optionName: '功能',
-                        url: '/requesterHome'
-                    },
-                    {
-                        optionName: '标注者平台',
-                        url: '/workerHome'
-                    }
-                ],
-                rightMenuItemList: [],
                 banner:{
                     mode: 2,
                     title: '图像标注服务',
@@ -77,35 +61,6 @@
                     imgUrl: require("@/assets/home/area_mark_eg.png")
                 },
             }
-        },
-        methods: {
-            isLogin() {
-                return false;
-            }
-        },
-        mounted() {
-            const _this = this;
-            let loginList = [
-                {
-                    optionName: '注册',
-                    url: '/requesterHome/register'
-                },
-                {
-                    optionName: '登录',
-                    url: '/requesterHome/login'
-                }
-            ];
-            let infoList = [
-                {
-                    optionName: '个人中心',
-                    url: '/requesterHome/center'
-                },
-                {
-                    optionName: '登出',
-                    url: '/requesterHome/logout'
-                }
-            ];
-            _this.rightMenuItemList = _this.isLogin()?infoList:loginList;
         }
 
     }

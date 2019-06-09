@@ -61,6 +61,7 @@
         },
         methods: {
             toPage(url) {
+                console.log(url);
                 this.$router.push(({path: url}));
             },
             isCollapsed() {
