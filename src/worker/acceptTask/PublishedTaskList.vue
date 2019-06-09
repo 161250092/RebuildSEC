@@ -27,9 +27,12 @@
                 <el-table :data="currentTaskList"
                           style="width: 100%" :default-sort="{prop: 'accepted', order: 'descending'}">
 
-                    <el-table-column type="expand">
+                    <el-table-column type="expand" inline>
                         <template slot-scope="props">
                             <el-form lable-position="left">
+                                <el-form-item label="任务ID">
+                                    <span>{{props.row.id}}</span>
+                                </el-form-item>
                                 <el-form-item label="任务描述">
                                     <span>{{props.row.description}}</span>
                                 </el-form-item>
@@ -209,16 +212,21 @@
                     if (new Date(searchCriteria.filter.latestEndDate).getTime() < item.endDate * 1000) { return false; }
 
                     //字符串查找
-                    if (this.searchOptions === '') {
+                    if (searchCriteria.option === '') {
                         if (!item.requester.includes(searchCriteria.string)
-                        || !item.title.includes(searchCriteria.string)
-                        || !item.description.includes(searchCriteria.string) ) { return false; }
-                     else if (this.searchOptions === 'requester'
-                            && !item.requester.includes(searchCriteria.string)) { return false; }
-                     else if (this.searchOptions === 'title'
-                            && !item.title.includes(searchCriteria.string)) { return false; }
-                     else if (this.searchOptions === 'description'
-                            && !item.description.includes(searchCriteria.string)) { return false; }
+                            && !item.title.includes(searchCriteria.string)
+                            && !item.description.includes(searchCriteria.string)) {
+                            return false;
+                        }
+                    } else if (searchCriteria.option === 'requester'
+                            && !item.requester.includes(searchCriteria.string)) {
+                        return false;
+                    } else if (searchCriteria.option === 'title'
+                            && !item.title.includes(searchCriteria.string)) {
+                        return false;
+                    } else if (searchCriteria.option === 'description'
+                            && !item.description.includes(searchCriteria.string)) {
+                        return false;
                     }
 
                     return true;

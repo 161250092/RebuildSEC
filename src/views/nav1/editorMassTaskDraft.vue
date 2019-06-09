@@ -19,9 +19,6 @@
                     </el-select>
                 </el-form-item>
 
-                <el-form-item prop="taskId" label="任务编号">
-                    <span>{{taskId}}</span>
-                </el-form-item>
 
                 <el-form-item prop="quality" label="标注质量">
                     <el-select  placeholder="请选择标注质量" v-model="quality">
@@ -110,8 +107,11 @@
         },
         methods: {
             saveAsDraft() {
-                alert("save");
                 this.isMinBudget = true;
+                this.$message({
+                    message: '已保存',
+                    type: 'success'
+                });
             },
 
             onSelectedScheme(event) {

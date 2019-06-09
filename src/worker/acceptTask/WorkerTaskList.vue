@@ -23,7 +23,7 @@
 <!--            表格-->
             <div>
                 <el-table :data="currentTaskList" style="width: 100%"
-                          :default-sort="{prop: 'endDate', order: 'descending'}">
+                          :default-sort="{prop: 'endDate', order: 'ascending'}">
 
                     <el-table-column type="expand">
                         <template slot-scope="props">
@@ -72,6 +72,47 @@
                         layout="total, sizes, prev, pager, next, jumper"
                         :total="totalCount"
                 ></el-pagination>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <el-dialog title="搜索条件筛选"
+                           width="30%"
+                           :visible.sync="isFilterOpen"
+                           :close-on-click-modal="true"
+                           :close-on-press-escape="true">
+
+                    <el-form  status-icon ref="details">
+                        <el-form-item prop="minAccepted" label="最小接受数">
+                            <el-input size="small"  v-model="searchCriteria.filter.minAccepted"></el-input>
+                        </el-form-item>
+                        <el-form-item prop="minReward" label="最少奖励">
+                            <el-input size="small"  v-model="searchCriteria.filter.minReward"></el-input>
+                        </el-form-item>
+                        <el-form-item prop="taskType" label="任务类型">
+                            <el-checkbox :indeterminate="isTaskTypesIndeterminate"
+                                         v-model="isAllTaskTypes"
+                                         @change="handleTaskTypeAllChange">全选</el-checkbox>
+                            <div style="margin: 15px 0;"></div>
+                            <el-checkbox-group v-model="searchCriteria.filter.taskType"
+                                               @change="handleTaskTypeChange">
+                                <el-checkbox v-for="item in taskTypes"
+                                             :key="item.value" :label="item.value">{{item.label}}</el-checkbox>
+                            </el-checkbox-group>
+                        </el-form-item>
+                        <el-form-item prop="latestEndDate" label="在本时间之前截止">
+                            <el-date-picker v-model="searchCriteria.filter.latestEndDate"
+                                            :picker-options="pickerOptions"
+                                            placeholder="选择日期"></el-date-picker>
+                        </el-form-item>
+                    </el-form>
+
+                    <div slot="footer" class="dialog-footer">
+                        <el-button type="success" @click="handleFilterConfirm">确认</el-button>
+                        <el-button type="primary" @click="isFilterOpen = false">取消</el-button>
+                    </div>
+                </el-dialog>
             </div>
         </div>
     </div>
@@ -126,6 +167,28 @@
             handleAccept(index, row) {
                 console.log(index, row);
             },
+            handlePageSizeChange(newPageSize) {
+                this.pageSize = newPageSize;
+                this.loadData();
+            },
+            handlePageCurrentChange(newCurrentPage) {
+                this.currentPage = newCurrentPage;
+                this.loadData();
+            },
+            handleFilterConfirm() {
+                this.isFilterOpen = false;
+                this.loadData();
+            },
+            handleTaskTypeAllChange(val) {
+                this.searchCriteria.filter.taskType = this.isAllTaskTypes ? this.taskTypesValue : [];
+                this.isTaskTypesIndeterminate = false;
+            },
+            handleTaskTypeChange(value) {
+                let selectedTaskTypeCount = value.length;
+                this.isAllTaskTypes = (selectedTaskTypeCount === this.taskTypes.length);
+                this.isTaskTypesIndeterminate = (selectedTaskTypeCount > 0
+                    && selectedTaskTypeCount < this.taskTypes.length);
+            },
 
             searchTasks() {
                 this.loadData();
@@ -151,16 +214,21 @@
                     if (new Date(searchCriteria.filter.latestEndDate).getTime() < item.endDate * 1000) { return false; }
 
                     //字符串查找
-                    if (this.searchOptions === '') {
+                    if (searchCriteria.option === '') {
                         if (!item.requester.includes(searchCriteria.string)
-                            || !item.title.includes(searchCriteria.string)
-                            || !item.description.includes(searchCriteria.string) ) { return false; }
-                        else if (this.searchOptions === 'requester'
-                            && !item.requester.includes(searchCriteria.string)) { return false; }
-                        else if (this.searchOptions === 'title'
-                            && !item.title.includes(searchCriteria.string)) { return false; }
-                        else if (this.searchOptions === 'description'
-                            && !item.description.includes(searchCriteria.string)) { return false; }
+                            && !item.title.includes(searchCriteria.string)
+                            && !item.description.includes(searchCriteria.string)) {
+                            return false;
+                        }
+                    } else if (searchCriteria.option === 'requester'
+                        && !item.requester.includes(searchCriteria.string)) {
+                        return false;
+                    } else if (searchCriteria.option === 'title'
+                        && !item.title.includes(searchCriteria.string)) {
+                        return false;
+                    } else if (searchCriteria.option === 'description'
+                        && !item.description.includes(searchCriteria.string)) {
+                        return false;
                     }
 
                     return true;

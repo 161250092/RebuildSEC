@@ -2,7 +2,14 @@
     <section>
         <div align="center" style="color: #409EFF;font-weight: bold;font-size: 18px;">已完成任务</div>
         <el-table :data="completedTasks"  style="width: 100%">
-            <el-table-column label="任务" prop="taskId" >
+            <el-table-column type="expand">
+                <template slot-scope="props">
+                    <el-form label-position="left" inline class="demo-table-expand">
+                        <el-form-item label="任务编号">
+                            <span>{{ props.row.taskId }}</span>
+                        </el-form-item>
+                    </el-form>
+                </template>
             </el-table-column>
 
             <el-table-column label="任务类型" prop="type">

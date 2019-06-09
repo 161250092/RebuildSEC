@@ -40,16 +40,13 @@ export default (
     {
         path: '/request',
         component: requestorMenu,
-        name: '任务发布中心',
+        name: '任务中心',
         iconCls: 'fa fa-picture-o',//图标样式class
         children: [
             { path: '/main', component: Main, name: '主页', hidden: true },
-            //{ path: '/table', component: Table, name: 'Table' },
-            // { path: '/form', component: Form, name: 'Form' },
-            { path: '/editorTaskDraft', component: editorTaskDraft, name: '编辑任务' },
-            { path: '/editorMassTaskDraft', component: editorMassTaskDraft, name: '编辑大任务' },
-            { path: '/publishTask', component: publishTask, name: '发布' },
-            // { path: '/user', component: user, name: '列表' },
+            { path: '/editorTaskDraft', component: editorTaskDraft, name: '普通任务' },
+            { path: '/editorMassTaskDraft', component: editorMassTaskDraft, name: '众包任务' },
+            { path: '/publishTask', component: publishTask, name: '发布中心' },
         ]
     },
     {
@@ -67,7 +64,7 @@ export default (
     {
         path: '/request',
         component: requestorMenu,
-        name: '发布者消息',
+        name: '消息',
         iconCls: 'fa fa-comment-o',
         children: [
             { path: '/cashInfo', component: cashInfo, name: '收支消息' },
@@ -77,7 +74,7 @@ export default (
     {
         path: '/request',
         component: requestorMenu,
-        name: '发布者个人中心',
+        name: '个人中心',
         iconCls: 'fa fa-user-circle',
         children: [
             { path: '/personInformation', component: personInformation, name: '个人信息' },
