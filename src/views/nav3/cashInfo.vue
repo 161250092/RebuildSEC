@@ -3,7 +3,14 @@
 	<section>
 		<div align="center" style="color: #409EFF;font-weight: bold;font-size: 18px;">收入</div>
 		<el-table :data="cashInfo"  style="width: 100%">
-			<el-table-column label="消息Id" prop="messageId">
+			<el-table-column type="expand">
+				<template slot-scope="props">
+					<el-form label-position="left" inline class="demo-table-expand">
+						<el-form-item label="消息Id">
+							<span>{{ props.row.messageId }}</span>
+						</el-form-item>
+					</el-form>
+				</template>
 			</el-table-column>
 
 			<el-table-column label="数额" prop="quantity">
@@ -21,6 +28,7 @@
 					</el-button>
 				</template>
 			</el-table-column>
+
 		</el-table>
 
 		<br>
@@ -35,9 +43,15 @@
 		<div align="center" style="color: #ff7238;font-weight: bold;font-size: 18px;">支出</div>
 
 		<el-table :data="cashInfo"  style="width: 100%">
-			<el-table-column label="消息Id" prop="messageId">
+			<el-table-column type="expand">
+				<template slot-scope="props">
+					<el-form label-position="left" inline class="demo-table-expand">
+						<el-form-item label="消息Id">
+							<span>{{ props.row.messageId }}</span>
+						</el-form-item>
+					</el-form>
+				</template>
 			</el-table-column>
-
 			<el-table-column label="数额" prop="quantity">
 			</el-table-column>
 
