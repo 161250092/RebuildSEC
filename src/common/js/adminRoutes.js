@@ -1,13 +1,13 @@
-import adminLogin from '../../admin/Login'
-import Home from '../../admin/Home'
+import adminLogin from '../../admin/Login';
+import Home from '../../admin/Home';
 
-import InAndOut from '../../admin/profit/InAndOut'
-import Profit from '../../admin/profit/ProfitInfo'
-import CurrentTaskInfo from '../../admin/task/CurrentTaskData'
-import TaskData from '../../admin/task/TaskData'
-import RequesterRegister from '../../admin/user/RequesterRegister'
-import WorkerRegister from '../../admin/user/WorkerRegister'
-import UserData from '../../admin/user/UserData'
+import InAndOut from '../../admin/profit/InAndOut';
+import Profit from '../../admin/profit/ProfitInfo';
+import CurrentTaskInfo from '../../admin/task/CurrentTaskData';
+import TaskData from '../../admin/task/TaskData';
+import RequesterRegister from '../../admin/user/RequesterRegister';
+import WorkerRegister from '../../admin/user/WorkerRegister';
+import UserData from '../../admin/user/UserData';
 
 export default (
     [
