@@ -1,11 +1,11 @@
 <template>
     <div>
         <div>
-            <NavMenu v-bind:left-menu-item-list="leftMenuItemList" v-bind:right-menu-item-list="rightMenuItemList"/>
+            <NavMenu v-bind:menu-index="menuIndex" v-bind:left-menu-item-list="leftMenuItemList" v-bind:right-menu-item-list="rightMenuItemList"/>
         </div>
 
-        <div class="banner">
-            <el-carousel :interval="5000" :autoplay="false" arrow="always" height="300px">
+        <div class="banner-carousel">
+            <el-carousel :interval="5000" :autoplay="false" arrow="always" height="280px">
                 <el-carousel-item v-for="(item,index) in carouselList" :key="index">
                     <Banner v-bind:banner="item"/>
                 </el-carousel-item>
@@ -70,8 +70,8 @@
                     }
                 ],
                 carouselList:[
-                    {title: '众包标注', content: '为您带来最优质的图像标注服务', imgUrl: require("@/assets/test_1.png")},
-                    {title: '随时发布需求', content: '全国 10000+ 专业标注者为您服务', imgUrl: require("@/assets/test_2.png")}
+                    {mode:1, title: '众包标注', content: '为您带来最优质的图像标注服务', imgUrl: require("@/assets/home/home_bg_1.png")},
+                    {mode:1, title: '随时发布需求', content: '全国 10000+ 专业标注者为您服务', imgUrl: require("@/assets/home/home_bg_2.png")}
                 ],
                 cardList:[
                     {title: '整体标注',  content: '对图像整体进行描述\n添加指定类型的标签', url:'/'},
@@ -89,24 +89,15 @@
 </script>
 
 <style scoped>
-    .banner{
+    .banner-carousel{
         background-color: #110233;
         width: 100%;
-        height: 300px;
+        height: 280px;
+        padding-top: 20px;
     }
 
     .card-container{
         margin: 2em 1em;
-    }
-
-    .card-title{
-        font-size: 1.25em;
-        font-weight: 600;
-    }
-
-    .card-content{
-        white-space: pre-wrap;
-        line-height:1.5;
     }
 
     @media screen and (max-width: 800px){
