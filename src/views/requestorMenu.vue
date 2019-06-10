@@ -6,7 +6,7 @@
 
 <script>
     import  NavMenu from '../components/NavMenu'
-    import  routes from '../common/js/requesterRoutes'
+    import  routes from '../common/js/routes/requesterRoutes'
     export default {
         name: "requestorMenu",
         components: {NavMenu},

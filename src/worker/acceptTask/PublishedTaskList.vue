@@ -24,8 +24,8 @@
 
 <!--            表格-->
             <div>
-                <el-table :data="currentTaskList"
-                          style="width: 100%" :default-sort="{prop: 'accepted', order: 'descending'}">
+                <el-table :data="currentTaskList" style="width: 100%"
+                          :default-sort="{prop: 'accepted', order: 'descending'}">
 
                     <el-table-column type="expand" inline>
                         <template slot-scope="props">
@@ -116,9 +116,10 @@
 </template>
 
 <script>
-    import publishedTaskList from '../../common/js/workerPublishedTaskList'
+    import publishedTaskList from '../../common/js/worker/workerPublishedTaskList'
     import {taskTypes, taskTypeValues} from '../../common/js/taskTypes';
-    import workerTaskSearchOption from '../../common/js/workerTaskSearchOption'
+    import workerTaskSearchOption from '../../common/js/worker/workerTaskSearchOption'
+    import {unixTimeToDate} from '../../common/js/formatterFunctions'
 
     export default {
         name: "PublishedTaskList",
@@ -252,8 +253,7 @@
                 return '￥' + cellValue;
             },
             formatDateFromTimestamp(row, column, cellValue, index) {
-                let date = new Date(cellValue * 1000);
-                return date.toLocaleDateString();
+                return unixTimeToDate(cellValue);
             }
         }
     }

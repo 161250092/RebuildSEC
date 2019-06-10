@@ -153,7 +153,7 @@
 </template>
 
 <script>
-    import { earningYear, earningQuarter, earningMonth } from '../../common/js/workerTotalEarning'
+    import { earningYear, earningQuarter, earningMonth } from '../../common/js/worker/workerTotalEarning'
 
     export default {
         name: "WorkerHistory",

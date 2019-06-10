@@ -1,9 +1,9 @@
-import App from "../../App";
-import Home from "../../home/Home";
-import RequesterHomeNav from "../../home/requesterHome/RequesterHomeNav";
-import RequesterHome from "../../home/requesterHome/RequesterHome"
-import RequesterLogin from "../../home/requesterHome/RequesterLogin"
-import WorkerHome from "../../home/workerHome/WorkerHome"
+import App from "../../../App";
+import Home from "../../../home/Home";
+import RequesterHomeNav from "../../../home/requesterHome/RequesterHomeNav";
+import RequesterHome from "../../../home/requesterHome/RequesterHome"
+import RequesterLogin from "../../../home/requesterHome/RequesterLogin"
+import WorkerHome from "../../../home/workerHome/WorkerHome"
 
 export default (
     [
