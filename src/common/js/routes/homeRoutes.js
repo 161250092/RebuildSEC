@@ -1,12 +1,12 @@
-import App from "../../App";
-import Home from "../../home/Home";
-import RequesterHome from "../../home/requesterHome/RequesterHome"
-import RequesterLogin from "../../home/requesterHome/RequesterLogin"
-import RequesterRegister from "../../home/requesterHome/RequesterRegister";
-import WorkerHome from "../../home/workerHome/WorkerHome"
-import WorkerLogin from "../../home/workerHome/WorkerLogin"
-import WorkerRegister from "../../home/workerHome/WorkerRegister"
-import WorkerGuide from "../../home/workerHome/WorkerGuide"
+import App from "../../../App";
+import Home from "../../../home/Home";
+import RequesterHome from "../../../home/requesterHome/RequesterHome"
+import RequesterLogin from "../../../home/requesterHome/RequesterLogin"
+import RequesterRegister from "../../../home/requesterHome/RequesterRegister";
+import WorkerHome from "../../../home/workerHome/WorkerHome"
+import WorkerLogin from "../../../home/workerHome/WorkerLogin"
+import WorkerRegister from "../../../home/workerHome/WorkerRegister"
+import WorkerGuide from "../../../home/workerHome/WorkerGuide"
 
 export default (
     [
