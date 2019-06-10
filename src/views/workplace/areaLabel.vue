@@ -111,7 +111,7 @@
                 //防止鼠标只是经过canvas
                 if(this.isDrawing === true){
                     //this.tempImageData = this.canvasContext.getImageData(0, 0, this.canvas.width, this.canvas.height);
-                  //  this.canvasContext.closePath();
+                    this.pointsInShow.push({x: -1, y: -1});
                     this.isDrawing = false;
                     this.canvasContext.stroke();
                 }
@@ -234,13 +234,22 @@
             },
 
             drawLine(){
+                console.log(this.pointsInShow);
                 this.canvasContext.lineWidth = this.thickness/20;
                 //设置线的颜色
                 this.canvasContext.strokeStyle = this.color;
             //    this.canvasContext.moveTo(this.pointsInShow[0].x,this.pointsInShow[0].y);
+
                 for(let i=1;i<this.pointsInShow.length;i++){
-                    this.canvasContext.lineTo(this.pointsInShow[i].x,this.pointsInShow[i].y);
-                    this.canvasContext.stroke();
+
+                    if(this.pointsInShow[i].x!==-1&&i!==this.pointsInShow.length-1) {
+                       // this.canvasContext.moveTo(this.pointsInShow[i-1].x,this.pointsInShow[i-1].y);
+                        this.canvasContext.lineTo(this.pointsInShow[i].x, this.pointsInShow[i].y);
+                        this.canvasContext.stroke();
+                    }
+                    else{
+                        this.canvasContext.moveTo(this.pointsInShow[i+1].x,this.pointsInShow[i+1].y);
+                    }
                 }
                 this.canvasContext.closePath();
             }

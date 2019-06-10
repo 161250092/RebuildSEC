@@ -71,7 +71,7 @@
 
                 canSubmit:false,
 
-                rectInShow:{},
+                rectsInShow:[],
                 rectsInfo:[],
                 color:'#409EFF',
                 thickness: 20,
@@ -95,21 +95,23 @@
                     this.startX =this.getX(ev);
                     this.startY = this.getY(ev);
                     this.isDrawing = true;
-                    //  this.canvasContext.moveTo(this.previousX, this.previousY);
+                    //this.canvasContext.moveTo(this.previousX, this.previousY);
                 }
 
             },
             stopDrawing: function (ev) {
                 //防止鼠标只是经过canvas
                 if(this.isDrawing === true){
-                    //this.tempImageData = this.canvasContext.getImageData(0, 0, this.canvas.width, this.canvas.height);
-                    //  this.canvasContext.closePath();
                     let currentStartX = this.getX(ev);
                     let currentStartY = this.getY(ev);
                     //  this.canvasContext.lineTo(currentStartX, currentStartY);
                     let w = Math.abs(this.startX-currentStartX);
                     let h= Math.abs(this.startY-currentStartY);
-                    this.rectInShow = {x:this.startX,y:this.startY,width:w,height:h};
+
+                    //当前页添加新矩形
+                    let newRect = {x:this.startX,y:this.startY,width:w,height:h};
+                    this.rectsInShow.push(newRect);
+
                     this.isDrawing = false;
                     this.canvasContext.stroke();
                 }
@@ -117,12 +119,16 @@
 
             draw(ev){
                 if(this.isDrawing===true) {
-                    this.canvas.height =  this.canvas.height;
+                    this.canvas.height = this.canvas.height;
                     let currentStartX = this.getX(ev);
                     let currentStartY = this.getY(ev);
                   //  this.canvasContext.lineTo(currentStartX, currentStartY);
                     let width = Math.abs(this.startX-currentStartX);
                     let height = Math.abs(this.startY-currentStartY);
+
+                    for(let i=0;i<this.rectsInShow.length;i++){
+                        this.canvasContext.rect(this.rectsInShow[i].x,this.rectsInShow[i].y,this.rectsInShow[i].width,this.rectsInShow[i].height);
+                    }
                     this.canvasContext.rect(this.startX,this.startY,width,height);
                     this.canvasContext.stroke();
                 }
@@ -138,25 +144,25 @@
             },
 
             changeColor(){
-                this.canvas.height =  this.canvas.height;
+                this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
                 this.canvasContext.strokeStyle = this.color;
-                this.drawRect();
+                this.drawRects();
             },
             changeThickness(){
-                this.canvas.height =  this.canvas.height;
+                this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
                 this.canvasContext.lineWidth = this.thickness;
-                this.drawRect();
+                this.drawRects();
             },
 
             clear(){
-                this.canvas.height =  this.canvas.height;
+                this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
                 this.canvasContext.strokeStyle = this.color;
-                this.rectInShow = {};
+                this.rectsInShow = [];
             },
 
             saveRect(){
-             //   console.log(this.rectInShow);
-                this.rectsInfo[this.currentIndex-1]  = this.rectInShow;
+
+                this.rectsInfo[this.currentIndex-1]  = this.rectsInShow;
               //  console.log(this.rectsInfo);
                 this.$message({
                     message: '已保存',
@@ -210,13 +216,15 @@
 
 
             previewImg() {
-                this.canvas.height =  this.canvas.height;
+               // this.canvas.height =  this.canvas.height;
+                this.canvas.height = this.canvas.height;
+                this.rectsInShow = [];
                 if (this.currentIndex >= 2) {
                     this.currentIndex--;
                     this.currentImageUrl = this.imgUrl[this.currentIndex - 1];
                     this.tagsInShowing = this.tagsInfo[this.currentIndex - 1];
-                    this.rectInShow = this.rectsInfo[this.currentIndex - 1];
-                    this.drawRect();
+                    this.rectsInShow = this.rectsInfo[this.currentIndex - 1];
+                    this.drawRects();
                 }
                 else
                 {
@@ -229,13 +237,14 @@
 
 
             nextImg() {
-                this.canvas.height =  this.canvas.height;
+                this.canvas.height = this.canvas.height;
+                this.rectsInShow = [];
                 if (this.currentIndex <= this.imgUrl.length-1) {
                     this.currentIndex++;
                     this.currentImageUrl = this.imgUrl[this.currentIndex - 1];
                     this.tagsInShowing = this.tagsInfo[this.currentIndex - 1];
-                    this.rectInShow = this.rectsInfo[this.currentIndex - 1];
-                    this.drawRect();
+                    this.rectsInShow = this.rectsInfo[this.currentIndex - 1];
+                    this.drawRects();
                 }
                 else
                 {
@@ -247,11 +256,13 @@
 
             },
 
-            drawRect(){
+            drawRects(){
                 this.canvasContext.lineWidth = this.thickness/20;
                 //设置线的颜色
                 this.canvasContext.strokeStyle = this.color;
-                this.canvasContext.rect(this.rectInShow.x,this.rectInShow.y,this.rectInShow.width,this.rectInShow.height);
+                for(let i=0;i<this.rectsInShow.length;i++){
+                    this.canvasContext.rect(this.rectsInShow[i].x,this.rectsInShow[i].y,this.rectsInShow[i].width,this.rectsInShow[i].height);
+                }
                 this.canvasContext.stroke();
             }
 
@@ -259,7 +270,7 @@
 
         mounted(){
             for(let i=0;i<this.imgUrl.length;i++){
-                this.rectsInfo.push({});
+                this.rectsInfo.push([]);
             }
 
             this.canvas = document.getElementById("canvas");
