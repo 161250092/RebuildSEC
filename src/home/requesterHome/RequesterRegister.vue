@@ -1,21 +1,21 @@
 <template>
     <div>
         <RequesterHomeNav v-bind:menu-index="menuIndex"/>
-        <Login v-bind:mode="mode"/>
+        <Register v-bind:mode="mode"/>
     </div>
 </template>
 
 <script>
     import RequesterHomeNav from "./RequesterHomeNav";
-    import Login from "../util/Login";
+    import Register from "../util/Register";
     export default {
-        name: "RequesterLogin",
+        name: "RequesterRegister",
         components: {
-            RequesterHomeNav, Login
+            RequesterHomeNav, Register
         },
         data() {
             return {
-                menuIndex: '6',
+                menuIndex: '5',
                 mode: 'requester'
             }
         }

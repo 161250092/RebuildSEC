@@ -1,83 +1,62 @@
 <template>
     <div>
         <div>
-            <NavMenu v-bind:menu-index="menuIndex" v-bind:left-menu-item-list="leftMenuItemList" v-bind:right-menu-item-list="rightMenuItemList"/>
+            <WorkerHomeNav v-bind:menu-index="menuIndex"/>
         </div>
 
         <div class="banner">
             <Banner v-bind:banner="banner"/>
         </div>
+
+        <div class="detail">
+            <ContentGroup v-bind:content-group="reward"></ContentGroup>
+            <ContentGroup v-bind:content-group="task"></ContentGroup>
+        </div>
+
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
+    import WorkerHomeNav from './WorkerHomeNav';
     import Banner from '../util/Banner';
-    import NavMenu from '../util/NavMenu';
     import ContentGroup from "../util/ContentGroup";
     export default {
         name: "WorkerHome",
         components: {
-            ContentGroup,
-            NavMenu, Banner
-        },
-        methods: {
-            isLogin() {
-                return false;
-            }
+            WorkerHomeNav, Banner, ContentGroup
         },
         data() {
             return {
                 menuIndex: '0',
-                leftMenuItemList: [
-                    {
-                        optionName: '平台介绍',
-                        url: '/workerHome'
-                    },
-                    {
-                        optionName: '关于报酬',
-                        url: '/workerHome'
-                    },
-                    {
-                        optionName: '标注者平台',
-                        url: '/workerHome'
-                    }
-                ],
-                rightMenuItemList: [],
                 banner:{
                     mode: 2,
                     title: '标注者联盟',
                     content: '零碎时间 无限价值',
                     imgUrl: require("@/assets/home/wk_home_bg.png")
-                }
+                },
+                reward:{
+                    id:'reward',
+                    mode: 'right',
+                    title:'奖励丰厚，就等你来',
+                    content: '只要按照要求完成标注任务，就能获得丰厚的奖励',
+                    imgUrl: require("@/assets/home/wk_pic_2.png")
+                },
+                task:{
+                    id:'task',
+                    mode: 'left',
+                    title:'海量任务，由你挑选',
+                    content: '每天都会有新的任务，总有适合自己的任务',
+                    imgUrl: require("@/assets/home/wk_pic_1.png")
+                },
+
             }
         },
-        mounted() {
-            const _this = this;
-            let loginList = [
-                {
-                    optionName: '注册',
-                    url: '/requesterHome/register'
-                },
-                {
-                    optionName: '登录',
-                    url: '/requesterHome/login'
-                }
-            ];
-            let infoList = [
-                {
-                    optionName: '个人中心',
-                    url: '/requesterHome/center'
-                },
-                {
-                    optionName: '登出',
-                    url: '/requesterHome/logout'
-                }
-            ];
-            _this.rightMenuItemList = _this.isLogin()?infoList:loginList;
-        }
     }
 </script>
 
 <style scoped>
-
+    .detail{
+        margin: 0 4em;
+    }
 </style>

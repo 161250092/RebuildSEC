@@ -61,8 +61,20 @@
         },
         methods: {
             toPage(url) {
-                console.log(url);
-                this.$router.push(({path: url}));
+                // 检测到动作为登出
+                if(url.indexOf("logout") !== -1){
+                    localStorage.clear();
+                    // 刷新当前页面
+                    this.$router.go(0);
+                }
+                else{
+                    this.$router.push(({path: url}));
+                    if(url.indexOf("#ancher-") !== -1) {
+                        let target = url.substring(url.indexOf("#ancher-") + 8);
+                        let anchor = document.getElementById(target);
+                        document.documentElement.scrollTop = anchor.offsetTop;
+                    }
+                }
             },
             isCollapsed() {
                 return parseInt(document.documentElement.clientWidth/800)>0 ? 0:1;

@@ -17,24 +17,12 @@
             return {
                 leftMenuItemList: [
                     {
-                        optionName: '产品介绍',
-                        url: '/requesterHome'
+                        optionName: '平台介绍',
+                        url: '/workerHome'
                     },
                     {
-                        optionName: '整体标注',
-                        url: '/requesterHome#ancher-imgMark'
-                    },
-                    {
-                        optionName: '方框标注',
-                        url: '/requesterHome#ancher-frameMark'
-                    },
-                    {
-                        optionName: '区域标注',
-                        url: '/requesterHome#ancher-areaMark'
-                    },
-                    {
-                        optionName: '服务协议',
-                        url: '/requesterHome'
+                        optionName: '如何标注',
+                        url: '/workerHome/guide'
                     }
                 ],
                 rightMenuItemList: [],
@@ -42,8 +30,8 @@
         },
         methods: {
             isLogin(){
-                let requester = localStorage.getItem("requester");
-                return requester !== null;
+                let worker = localStorage.getItem("worker");
+                return worker !== null;
             }
         },
         mounted() {
@@ -51,21 +39,21 @@
             let loginList = [
                 {
                     optionName: '注册',
-                    url: '/requesterHome/register'
+                    url: '/workerHome/register'
                 },
                 {
                     optionName: '登录',
-                    url: '/requesterHome/login'
+                    url: '/workerHome/login'
                 }
             ];
             let infoList = [
                 {
                     optionName: '个人中心',
-                    url: '/request'
+                    url: '/worker'
                 },
                 {
                     optionName: '登出',
-                    url: '/requesterHome/logout'
+                    url: '/workerHome/logout'
                 }
             ];
             _this.rightMenuItemList = _this.isLogin()?infoList:loginList;
