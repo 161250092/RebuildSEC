@@ -119,9 +119,9 @@
 </template>
 
 <script>
-    import workerAcceptedTaskList from '../../common/js/workerAcceptedTaskList';
+    import workerAcceptedTaskList from '../../common/js/worker/workerAcceptedTaskList';
     import {taskTypes, taskTypeValues} from '../../common/js/taskTypes'
-    import workerTaskSearchOption from '../../common/js/workerTaskSearchOption'
+    import workerTaskSearchOption from '../../common/js/worker/workerTaskSearchOption'
 
     export default {
         name: "WorkerTaskList",
