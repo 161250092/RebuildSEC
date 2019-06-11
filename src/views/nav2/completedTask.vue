@@ -5,14 +5,20 @@
             <el-table-column type="expand">
                 <template slot-scope="props">
                     <el-form label-position="left" inline class="demo-table-expand">
-                        <el-form-item label="任务编号">
-                            <span>{{ props.row.taskId }}</span>
+                        <el-form-item label="任务介绍">
+                            <span>{{ props.row.description}}</span>
                         </el-form-item>
+
+
+
                     </el-form>
                 </template>
             </el-table-column>
 
             <el-table-column label="任务类型" prop="type">
+            </el-table-column>
+
+            <el-table-column label="时间" prop="workTime">
             </el-table-column>
 
             <el-table-column label="完成人数" prop="peopleNum">
@@ -21,12 +27,12 @@
             <el-table-column label="奖励" prop="reward">
             </el-table-column>
 
-            <el-table-column label="查看" >
+            <el-table-column label="详情" >
                 <template slot-scope="scope">
                     <el-button
                             size="mini"
                             type="primary"
-                            @click="check(scope.row)">详情
+                            @click="check(scope.row)">查看
                     </el-button>
                 </template>
             </el-table-column>
@@ -100,6 +106,8 @@
                 completedTasks:[
                     {
                         taskId:"0000007",
+                        workTime:"2019-06-12",
+                        description:"请写出图片中人物特征",
                         type:"整体标注",
                         taskDescription:"image about rivers",
                         reward:100,
@@ -109,6 +117,8 @@
                     {
                         taskId:"0000008",
                         type:"方框标注",
+                        workTime:"2019-06-13",
+                        description:"请框出图中生物并出标出其特征",
                         taskDescription:"image about rivers",
                         reward:1000,
                         peopleNum:100
@@ -117,6 +127,8 @@
                     {
                         taskId:"0000009",
                         type:"区域标注",
+                        workTime:"2019-06-15",
+                        description:"请圈画出图中生物并出标出其特征",
                         taskDescription:"image about rivers",
                         reward:10000,
                         peopleNum:100

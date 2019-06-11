@@ -9,6 +9,7 @@
         <div class="buttonPosition">
             <el-button class="fa fa-arrow-left" @click="previewImg"></el-button>
             <el-button class="fa fa-arrow-right" @click="nextImg"></el-button>
+            <el-button v-if="theLast" @click="returnToReviewPage">返回</el-button>
             <p>{{currentIndex}}/{{totalNum}}</p>
         </div>
 
@@ -37,7 +38,7 @@
 
                 currentIndex:1,
                 totalNum:5,
-
+                theLast:false,
                 imgUrl:[
                     "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3443176063,4021563566&fm=27&gp=0.jpg",
                     "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2814109303,2147705560&fm=27&gp=0.jpg",
@@ -133,18 +134,24 @@
 
             },
             nextImg(){
+
                 if(this.currentIndex<=4){
                     this.currentIndex++;
                     this.currentImageUrl = this.imgUrl[this.currentIndex-1];
                     this.tagsInShowing = this.tagsInfo[this.currentIndex-1];
                 }
                 else{
+                    this.theLast = true;
                     this.$message({
                         message: '最后一张',
                         type: 'warning'
                     });
                 }
 
+            },
+
+            returnToReviewPage(){
+                this.$router.push({ path: '/checkSubmittedLabel' });
             }
 
         },
