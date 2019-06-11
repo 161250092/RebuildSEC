@@ -53,7 +53,7 @@
                         <template slot-scope="scope">
                             <el-button
                                     size="mini"
-                                    @click="handleWork(scope.$index, scope.row)"
+                                    @click="handleContinueWork(scope.$index, scope.row)"
                             >继续工作</el-button>
                         </template>
                     </el-table-column>
@@ -165,8 +165,9 @@
             })
         },
         methods: {
-            handleAccept(index, row) {
-                console.log(index, row);
+            handleContinueWork(index, row) {
+                let url = '/' + row.type;
+                this.$router.push(url);
             },
             handlePageSizeChange(newPageSize) {
                 this.pageSize = newPageSize;

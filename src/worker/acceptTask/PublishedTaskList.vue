@@ -163,7 +163,8 @@
         },
         methods: {
             handleAccept(index, row) {
-                console.log(index, row);
+                let url = '/' + row.type;
+                this.$router.push(url);
             },
             handlePageSizeChange(newPageSize) {
                 this.pageSize = newPageSize;

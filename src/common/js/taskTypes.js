@@ -1,15 +1,15 @@
 export let taskTypes = [
     {
-        label: '类型1',
-        value: 'type1',
+        label: '整体标注',
+        value: 'imgLabel',
     },
     {
-        label: '类型2',
-        value: 'type2'
+        label: '方框标注',
+        value: 'frameLabel'
     },
     {
-        label: '类型3',
-        value: 'type3'
+        label: '区域标注',
+        value: 'areaLabel'
     }
 ];
 
