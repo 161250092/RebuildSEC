@@ -1,7 +1,11 @@
 export default [
     {
         value: '',
-        label: '模糊'
+        label: '全局'
+    },
+    {
+        value: 'id',
+        label: '任务ID'
     },
     {
         value: 'requester',
@@ -9,7 +13,7 @@ export default [
     },
     {
         value: 'title',
-        label: '任务'
+        label: '任务标题'
     },
     {
         value: 'description',

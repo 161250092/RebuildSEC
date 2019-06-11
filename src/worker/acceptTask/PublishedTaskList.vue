@@ -41,7 +41,7 @@
                     </el-table-column>
 
                     <el-table-column prop="requester" label="发布者" width="150"></el-table-column>
-                    <el-table-column prop="title" label="任务" width="300"></el-table-column>
+                    <el-table-column prop="title" label="任务标题" width="300"></el-table-column>
                     <el-table-column prop="accepted" label="接受数" width="100" sortable></el-table-column>
                     <el-table-column prop="type" label="类型" width="100"
                                      :formatter="formatTaskType" sortable></el-table-column>
@@ -214,11 +214,15 @@
 
                     //字符串查找
                     if (searchCriteria.option === '') {
-                        if (!item.requester.includes(searchCriteria.string)
+                        if (!item.id.includes(searchCriteria.string)
+                            && !item.requester.includes(searchCriteria.string)
                             && !item.title.includes(searchCriteria.string)
                             && !item.description.includes(searchCriteria.string)) {
                             return false;
                         }
+                    } else if (searchCriteria.option === 'id'
+                            && !item.id.includes(searchCriteria.string)) {
+                        return false;
                     } else if (searchCriteria.option === 'requester'
                             && !item.requester.includes(searchCriteria.string)) {
                         return false;

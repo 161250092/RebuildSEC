@@ -36,7 +36,7 @@
                     </el-table-column>
 
                     <el-table-column prop="requester" label="发布者" width="150"></el-table-column>
-                    <el-table-column prop="title" label="任务" width="300"></el-table-column>
+                    <el-table-column prop="title" label="任务标题" width="300"></el-table-column>
                     <el-table-column prop="type" label="类型" width="100"
                                      :formatter="formatTaskType" sortable></el-table-column>
                     <el-table-column prop="schedule" label="进度" width="100"
