@@ -6,7 +6,7 @@ export default [
         accepted: 10000,
         type: 'type1',
         reward: 0.05,
-        endDate: 1569888000,
+        endTime: 1569888000000,
         description: 'aksjdhgkjahgk'
     },
     {
@@ -16,7 +16,7 @@ export default [
         accepted: 2000,
         type: 'type2',
         reward: 0.05,
-        endDate: 1573516800,
+        endTime: 1573516800000,
         description: 'poiwhugfahvjbs'
     },
     {
@@ -26,7 +26,7 @@ export default [
         accepted: 12000,
         type: 'type3',
         reward: 0.2,
-        endDate: 1577664000,
+        endTime: 1577664000000,
         description: 'popjsddss'
     },
     // {
@@ -35,7 +35,7 @@ export default [
     //     accepted: 10000,
     //     type: 'type1',
     //     reward: 0.05,
-    //     endDate: 1569888000,
+    //     endTime: 1569888000,
     //     description: 'aksjdhgkjahgk'
     // },
     // {
@@ -44,7 +44,7 @@ export default [
     //     accepted: 2000,
     //     type: 'type2',
     //     reward: 0.05,
-    //     endDate: 1573516800,
+    //     endTime: 1573516800,
     //     description: 'poiwhugfahvjbs'
     // },
     // {
@@ -53,7 +53,7 @@ export default [
     //     accepted: 12000,
     //     type: 'type3',
     //     reward: 0.2,
-    //     endDate: 1577664000,
+    //     endTime: 1577664000,
     //     description: 'popjsddss'
     // },
     // {
@@ -62,7 +62,7 @@ export default [
     //     accepted: 10000,
     //     type: 'type1',
     //     reward: 0.05,
-    //     endDate: 1569888000,
+    //     endTime: 1569888000,
     //     description: 'aksjdhgkjahgk'
     // },
     // {
@@ -71,7 +71,7 @@ export default [
     //     accepted: 2000,
     //     type: 'type2',
     //     reward: 0.05,
-    //     endDate: 1573516800,
+    //     endTime: 1573516800,
     //     description: 'poiwhugfahvjbs'
     // },
     // {
@@ -80,7 +80,7 @@ export default [
     //     accepted: 12000,
     //     type: 'type3',
     //     reward: 0.2,
-    //     endDate: 1577664000,
+    //     endTime: 1577664000,
     //     description: 'popjsddss'
     // },
     // {
@@ -89,7 +89,7 @@ export default [
     //     accepted: 10000,
     //     type: 'type1',
     //     reward: 0.05,
-    //     endDate: 1569888000,
+    //     endTime: 1569888000,
     //     description: 'aksjdhgkjahgk'
     // },
     // {
@@ -98,7 +98,7 @@ export default [
     //     accepted: 2000,
     //     type: 'type2',
     //     reward: 0.05,
-    //     endDate: 1573516800,
+    //     endTime: 1573516800,
     //     description: 'poiwhugfahvjbs'
     // },
     // {
@@ -107,7 +107,7 @@ export default [
     //     accepted: 12000,
     //     type: 'type3',
     //     reward: 0.2,
-    //     endDate: 1577664000,
+    //     endTime: 1577664000,
     //     description: 'popjsddss'
     // },
     // {
@@ -116,7 +116,7 @@ export default [
     //     accepted: 10000,
     //     type: 'type1',
     //     reward: 0.05,
-    //     endDate: 1569888000,
+    //     endTime: 1569888000,
     //     description: 'aksjdhgkjahgk'
     // },
     // {
@@ -125,7 +125,7 @@ export default [
     //     accepted: 2000,
     //     type: 'type2',
     //     reward: 0.05,
-    //     endDate: 1573516800,
+    //     endTime: 1573516800,
     //     description: 'poiwhugfahvjbs'
     // },
     // {
@@ -134,7 +134,7 @@ export default [
     //     accepted: 12000,
     //     type: 'type3',
     //     reward: 0.2,
-    //     endDate: 1577664000,
+    //     endTime: 1577664000,
     //     description: 'popjsddss'
     // },
     // {
@@ -143,7 +143,7 @@ export default [
     //     accepted: 10000,
     //     type: 'type1',
     //     reward: 0.05,
-    //     endDate: 1569888000,
+    //     endTime: 1569888000,
     //     description: 'aksjdhgkjahgk'
     // },
     // {
@@ -152,7 +152,7 @@ export default [
     //     accepted: 2000,
     //     type: 'type2',
     //     reward: 0.05,
-    //     endDate: 1573516800,
+    //     endTime: 1573516800,
     //     description: 'poiwhugfahvjbs'
     // },
     // {
@@ -161,7 +161,7 @@ export default [
     //     accepted: 12000,
     //     type: 'type3',
     //     reward: 0.2,
-    //     endDate: 1577664000,
+    //     endTime: 1577664000,
     //     description: 'popjsddss'
     // },
     // {
@@ -170,7 +170,7 @@ export default [
     //     accepted: 10000,
     //     type: 'type1',
     //     reward: 0.05,
-    //     endDate: 1569888000,
+    //     endTime: 1569888000,
     //     description: 'aksjdhgkjahgk'
     // },
     // {
@@ -179,7 +179,7 @@ export default [
     //     accepted: 2000,
     //     type: 'type2',
     //     reward: 0.05,
-    //     endDate: 1573516800,
+    //     endTime: 1573516800,
     //     description: 'poiwhugfahvjbs'
     // },
     // {
@@ -188,7 +188,7 @@ export default [
     //     accepted: 12000,
     //     type: 'type3',
     //     reward: 0.2,
-    //     endDate: 1577664000,
+    //     endTime: 1577664000,
     //     description: 'popjsddss'
     // },
     // {
@@ -197,7 +197,7 @@ export default [
     //     accepted: 10000,
     //     type: 'type1',
     //     reward: 0.05,
-    //     endDate: 1569888000,
+    //     endTime: 1569888000,
     //     description: 'aksjdhgkjahgk'
     // },
     // {
@@ -206,7 +206,7 @@ export default [
     //     accepted: 2000,
     //     type: 'type2',
     //     reward: 0.05,
-    //     endDate: 1573516800,
+    //     endTime: 1573516800,
     //     description: 'poiwhugfahvjbs'
     // },
     // {
@@ -215,7 +215,7 @@ export default [
     //     accepted: 12000,
     //     type: 'type3',
     //     reward: 0.2,
-    //     endDate: 1577664000,
+    //     endTime: 1577664000,
     //     description: 'popjsddss'
     // },
     // {
@@ -224,7 +224,7 @@ export default [
     //     accepted: 10000,
     //     type: 'type1',
     //     reward: 0.05,
-    //     endDate: 1569888000,
+    //     endTime: 1569888000,
     //     description: 'aksjdhgkjahgk'
     // },
     // {
@@ -233,7 +233,7 @@ export default [
     //     accepted: 2000,
     //     type: 'type2',
     //     reward: 0.05,
-    //     endDate: 1573516800,
+    //     endTime: 1573516800,
     //     description: 'poiwhugfahvjbs'
     // },
     // {
@@ -242,7 +242,7 @@ export default [
     //     accepted: 12000,
     //     type: 'type3',
     //     reward: 0.2,
-    //     endDate: 1577664000,
+    //     endTime: 1577664000,
     //     description: 'popjsddss'
     // },
     // {
@@ -251,7 +251,7 @@ export default [
     //     accepted: 10000,
     //     type: 'type1',
     //     reward: 0.05,
-    //     endDate: 1569888000,
+    //     endTime: 1569888000,
     //     description: 'aksjdhgkjahgk'
     // },
     // {
@@ -260,7 +260,7 @@ export default [
     //     accepted: 2000,
     //     type: 'type2',
     //     reward: 0.05,
-    //     endDate: 1573516800,
+    //     endTime: 1573516800,
     //     description: 'poiwhugfahvjbs'
     // },
     // {
@@ -269,7 +269,7 @@ export default [
     //     accepted: 12000,
     //     type: 'type3',
     //     reward: 0.2,
-    //     endDate: 1577664000,
+    //     endTime: 1577664000,
     //     description: 'popjsddss'
     // },
     // {
@@ -278,7 +278,7 @@ export default [
     //     accepted: 10000,
     //     type: 'type1',
     //     reward: 0.05,
-    //     endDate: 1569888000,
+    //     endTime: 1569888000,
     //     description: 'aksjdhgkjahgk'
     // },
     // {
@@ -287,7 +287,7 @@ export default [
     //     accepted: 2000,
     //     type: 'type2',
     //     reward: 0.05,
-    //     endDate: 1573516800,
+    //     endTime: 1573516800,
     //     description: 'poiwhugfahvjbs'
     // },
     // {
@@ -296,7 +296,7 @@ export default [
     //     accepted: 12000,
     //     type: 'type3',
     //     reward: 0.2,
-    //     endDate: 1577664000,
+    //     endTime: 1577664000,
     //     description: 'popjsddss'
     // },
     // {
@@ -305,7 +305,7 @@ export default [
     //     accepted: 10000,
     //     type: 'type1',
     //     reward: 0.05,
-    //     endDate: 1569888000,
+    //     endTime: 1569888000,
     //     description: 'aksjdhgkjahgk'
     // },
     // {
@@ -314,7 +314,7 @@ export default [
     //     accepted: 2000,
     //     type: 'type2',
     //     reward: 0.05,
-    //     endDate: 1573516800,
+    //     endTime: 1573516800,
     //     description: 'poiwhugfahvjbs'
     // },
     // {
@@ -323,7 +323,7 @@ export default [
     //     accepted: 12000,
     //     type: 'type3',
     //     reward: 0.2,
-    //     endDate: 1577664000,
+    //     endTime: 1577664000,
     //     description: 'popjsddss'
     // },
     // {
@@ -332,7 +332,7 @@ export default [
     //     accepted: 10000,
     //     type: 'type1',
     //     reward: 0.05,
-    //     endDate: 1569888000,
+    //     endTime: 1569888000,
     //     description: 'aksjdhgkjahgk'
     // },
     // {
@@ -341,7 +341,7 @@ export default [
     //     accepted: 2000,
     //     type: 'type2',
     //     reward: 0.05,
-    //     endDate: 1573516800,
+    //     endTime: 1573516800,
     //     description: 'poiwhugfahvjbs'
     // },
     // {
@@ -350,7 +350,7 @@ export default [
     //     accepted: 12000,
     //     type: 'type3',
     //     reward: 0.2,
-    //     endDate: 1577664000,
+    //     endTime: 1577664000,
     //     description: 'popjsddss'
     // },
     // {
@@ -359,7 +359,7 @@ export default [
     //     accepted: 10000,
     //     type: 'type1',
     //     reward: 0.05,
-    //     endDate: 1569888000,
+    //     endTime: 1569888000,
     //     description: 'aksjdhgkjahgk'
     // },
     // {
@@ -368,7 +368,7 @@ export default [
     //     accepted: 2000,
     //     type: 'type2',
     //     reward: 0.05,
-    //     endDate: 1573516800,
+    //     endTime: 1573516800,
     //     description: 'poiwhugfahvjbs'
     // },
     // {
@@ -377,7 +377,7 @@ export default [
     //     accepted: 12000,
     //     type: 'type3',
     //     reward: 0.2,
-    //     endDate: 1577664000,
+    //     endTime: 1577664000,
     //     description: 'popjsddss'
     // },
 ];

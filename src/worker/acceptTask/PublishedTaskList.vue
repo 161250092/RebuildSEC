@@ -40,14 +40,14 @@
                         </template>
                     </el-table-column>
 
-                    <el-table-column prop="requester" label="发布者" width="150" sortable></el-table-column>
-                    <el-table-column prop="title" label="任务" width="300" sortable></el-table-column>
+                    <el-table-column prop="requester" label="发布者" width="150"></el-table-column>
+                    <el-table-column prop="title" label="任务" width="300"></el-table-column>
                     <el-table-column prop="accepted" label="接受数" width="100" sortable></el-table-column>
                     <el-table-column prop="type" label="类型" width="100"
                                      :formatter="formatTaskType" sortable></el-table-column>
                     <el-table-column prop="reward" label="奖励" width="100"
                                      :formatter="formatRewardFromNumber" sortable></el-table-column>
-                    <el-table-column prop="endDate" label="截止时间" width="120"
+                    <el-table-column prop="endTime" label="截止时间" width="120"
                                      :formatter="formatDateFromTimestamp" sortable></el-table-column>
 
                     <el-table-column prop="actions" label="操作" align="right">
@@ -119,7 +119,7 @@
     import publishedTaskList from '../../common/js/worker/workerPublishedTaskList'
     import {taskTypes, taskTypeValues} from '../../common/js/taskTypes';
     import workerTaskSearchOption from '../../common/js/worker/workerTaskSearchOption'
-    import {unixTimeToDate} from '../../common/js/formatterFunctions'
+    import {formatTaskTypeLabel, unixTimeToDate} from '../../common/js/formatterFunctions'
 
     export default {
         name: "PublishedTaskList",
@@ -210,7 +210,7 @@
                     if (!isSelectedTaskType) { return false; }
 
                     //任务最晚截止时间
-                    if (new Date(searchCriteria.filter.latestEndDate).getTime() < item.endDate * 1000) { return false; }
+                    if (new Date(searchCriteria.filter.latestEndDate).getTime() < item.endTime * 1000) { return false; }
 
                     //字符串查找
                     if (searchCriteria.option === '') {
@@ -241,13 +241,7 @@
             },
 
             formatTaskType(row, column, cellValue, index) {
-                let typeStr = '错误类型';
-                this.taskTypes.forEach((item) => {
-                    if (item.value === cellValue) {
-                        typeStr = item.label;
-                    }
-                });
-                return typeStr;
+                return formatTaskTypeLabel(cellValue);
             },
             formatRewardFromNumber(row, column, cellValue, index) {
                 return '￥' + cellValue;

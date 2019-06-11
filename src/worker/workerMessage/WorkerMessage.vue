@@ -20,10 +20,7 @@
                           :default-sort="{prop: 'date', order: 'descending'}"
                           @selection-change="handleTableSelectionChange">
 
-                    <el-table-column
-                            type="selection"
-                            width="55">
-                    </el-table-column>
+                    <el-table-column type="selection" width="55"></el-table-column>
 
                     <el-table-column prop="sender" label="发送人" width="150"></el-table-column>
                     <el-table-column prop="date" label="发送时间" width="200"

@@ -14,15 +14,15 @@ import Mock from './mock'
 Mock.bootstrap();
 import 'font-awesome/css/font-awesome.min.css'
 
-Vue.use(ElementUI)
-Vue.use(VueRouter)
-Vue.use(Vuex)
+Vue.use(ElementUI);
+Vue.use(VueRouter);
+Vue.use(Vuex);
 
 //NProgress.configure({ showSpinner: false });
 
 const router = new VueRouter({
   routes
-})
+});
 
 // router.beforeEach((to, from, next) => {
 //   //NProgress.start();
@@ -48,5 +48,5 @@ new Vue({
   store,
   //components: { App }
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
 

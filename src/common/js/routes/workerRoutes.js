@@ -4,6 +4,7 @@ import WorkerNavMenu from "../../../worker/WorkerNavMenu";
 import WorkerInfo from "../../../worker/workerInfo/WorkerInfo";
 import WorkerHistory from "../../../worker/workerInfo/WorkerHistory";
 import WorkerMessage from "../../../worker/workerMessage/WorkerMessage";
+import WorkerSubmittedTaskStatus from "../../../worker/workerMessage/WorkerSubmittedTaskStatus";
 
 export default (
     [
@@ -23,6 +24,7 @@ export default (
             name: '消息',
             iconCls: 'fa fa-comment-o',//图标样式class
             children: [
+                { path: '/taskStatus', component: WorkerSubmittedTaskStatus, name: '已提交任务情况' },
                 { path: '/message', component: WorkerMessage, name: '消息' },
             ]
         },

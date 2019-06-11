@@ -23,7 +23,7 @@
 <!--            表格-->
             <div>
                 <el-table :data="currentTaskList" style="width: 100%"
-                          :default-sort="{prop: 'endDate', order: 'ascending'}">
+                          :default-sort="{prop: 'endTime', order: 'ascending'}">
 
                     <el-table-column type="expand">
                         <template slot-scope="props">
@@ -43,7 +43,7 @@
                                      :formatter="formatSchedule" sortable></el-table-column>
                     <el-table-column prop="reward" label="奖励" width="100"
                                      :formatter="formatRewardFromNumber" sortable></el-table-column>
-                    <el-table-column prop="endDate" label="截止时间" width="120"
+                    <el-table-column prop="endTime" label="截止时间" width="120"
                                      :formatter="formatDateFromTimestamp" sortable></el-table-column>
 
                     <el-table-column
@@ -122,6 +122,7 @@
     import workerAcceptedTaskList from '../../common/js/worker/workerAcceptedTaskList';
     import {taskTypes, taskTypeValues} from '../../common/js/taskTypes'
     import workerTaskSearchOption from '../../common/js/worker/workerTaskSearchOption'
+    import {unixTimeToDate} from "../../common/js/formatterFunctions";
 
     export default {
         name: "WorkerTaskList",
@@ -142,7 +143,7 @@
                         minAccepted: 0,
                         minReward: 0.01,
                         taskType: taskTypeValues,
-                        latestEndDate: '',
+                        latestEndTime: '',
                     }
                 },
 
@@ -211,7 +212,7 @@
                     if (!isSelectedTaskType) { return false; }
 
                     //任务最晚截止时间
-                    if (new Date(searchCriteria.filter.latestEndDate).getTime() < item.endDate * 1000) { return false; }
+                    if (new Date(searchCriteria.filter.latestEndTime).getTime() < item.endTime * 1000) { return false; }
 
                     //字符串查找
                     if (searchCriteria.option === '') {
@@ -257,8 +258,7 @@
                 return '￥' + cellValue;
             },
             formatDateFromTimestamp(row, column, cellValue, index) {
-                let date = new Date(cellValue * 1000);
-                return date.toLocaleDateString();
+                return unixTimeToDate(cellValue);
             },
         }
     }
