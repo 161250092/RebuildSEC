@@ -77,7 +77,7 @@ export default (
         name: '个人中心',
         iconCls: 'fa fa-user-circle',
         children: [
-            { path: '/personInformation', component: personInformation, name: '个人信息' },
+            { path: '/personInformation', component: personInformation, name: '账号信息' },
             { path: '/canvas1', component: canvas1, name: '工作台1', hidden: true },
             { path: '/canvas2', component: canvas2, name: '工作台2', hidden:true},
             { path: '/canvas3', component: canvas3, name: '工作台3', hidden:true}

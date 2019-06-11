@@ -1,6 +1,6 @@
 <template>
 	<section>
-		main
+		<img src='../assets/userPicture.png' />
 	</section>
 </template>
 

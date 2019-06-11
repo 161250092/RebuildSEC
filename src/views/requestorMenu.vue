@@ -2,6 +2,7 @@
     <div>
         <NavMenu v-bind:routes="routes"/>
     </div>
+
 </template>
 
 <script>
@@ -14,6 +15,10 @@
             return {
                 routes: routes,
             }
+        },
+
+        created() {
+            this.$router.push("/main");
         }
     }
 </script>

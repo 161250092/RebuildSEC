@@ -148,13 +148,13 @@
                 colors: ['#99A9BF', '#F7BA2A', '#FF9900'],
                 showRate:false,
                 rejectConfirmInfo:false,
-                abolishConfirmInfo:false
+                abolishConfirmInfo:false,
+                selectedTaskId:""
 
             }
         },
         methods:{
             review(task){
-
                 if(task.type==="整体标注"){
                  //   alert("去审核");
                     this.$router.push('/canvas1');
@@ -172,11 +172,13 @@
                     type: 'success'
                 });
                 this.showRate = false;
-                this.tasks.pop();
+               // this.tasks.pop();
+                this.removeEelement();
             },
             pass(task){
               //  alert("通过");
                 this.showRate = true;
+                this.selectedTaskId = task.taskId;
             },
 
             showRejectInfo(){
@@ -184,10 +186,12 @@
                     message: '已驳回',
                     type: 'success'
                 });
-                this.tasks.pop();
+               // this.tasks.pop();
+                this.removeEelement();
                 this.rejectConfirmInfo = false;
             },
             reject(task){
+                this.selectedTaskId = task.taskId;
                 this.rejectConfirmInfo = true;
             },
 
@@ -196,12 +200,24 @@
                     message: '已废弃',
                     type: 'success'
                 });
-                this.tasks.pop();
+
+              //  this.tasks.pop();
+                this.removeEelement();
                 this.abolishConfirmInfo  =false;
             },
 
             abolish(task){
+                this.selectedTaskId = task.taskId;
                 this.abolishConfirmInfo = true;
+            },
+
+            removeEelement(){
+                for(let i=0;i<this.tasks.length;i++){
+                    if(this.selectedTaskId===this.tasks[i].taskId){
+                        this.tasks.splice(i,1);
+                        return;
+                    }
+                }
             }
         }
 

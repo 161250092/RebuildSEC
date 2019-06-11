@@ -190,7 +190,15 @@
 
             deleteTask(task){
                 console.log(task);
-                this.taskWaitingForRelease.pop();
+              //  this.taskWaitingForRelease.pop();
+                for(let i=0;i<this.taskWaitingForRelease.length;i++){
+                    if(task.taskId===this.taskWaitingForRelease[i].taskId){
+                        this.taskWaitingForRelease.splice(i,1);
+                        return;
+                    }
+                }
+
+
                 this.$message({
                     message: '已删除',
                     type: 'success'
