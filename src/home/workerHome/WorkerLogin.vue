@@ -15,7 +15,7 @@
         },
         data() {
             return {
-                menuIndex: '3',
+                menuIndex: '4',
                 mode: 'worker'
             }
         }

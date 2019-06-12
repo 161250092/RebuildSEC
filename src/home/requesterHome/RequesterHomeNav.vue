@@ -17,7 +17,11 @@
             return {
                 leftMenuItemList: [
                     {
-                        optionName: '产品介绍',
+                        optionName: '首页',
+                        url: '/'
+                    },
+                    {
+                        optionName: '服务介绍',
                         url: '/requesterHome'
                     },
                     {
@@ -32,10 +36,10 @@
                         optionName: '区域标注',
                         url: '/requesterHome#ancher-areaMark'
                     },
-                    {
-                        optionName: '服务协议',
-                        url: '/requesterHome'
-                    }
+                    // {
+                    //     optionName: '服务协议',
+                    //     url: '/requesterHome'
+                    // }
                 ],
                 rightMenuItemList: [],
             }

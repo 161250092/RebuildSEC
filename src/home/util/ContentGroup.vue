@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div :id="contentGroup.id" v-if="contentGroup.mode==='full'">
+    <div v-bind:class="{'bg-with-color': contentGroup.withColor }">
+        <div :id="contentGroup.id" v-if="contentGroup.mode==='full'" class="container">
             <div class="title">
                 {{contentGroup.title}}
             </div>
@@ -16,7 +16,7 @@
             <br>
         </div>
 
-        <div :id="contentGroup.id" v-if="contentGroup.mode==='left'" class="box">
+        <div :id="contentGroup.id" v-if="contentGroup.mode==='left'" class="container box">
             <div class="right-panel content">
                 <p class="title title-large">
                     {{contentGroup.title}}
@@ -31,7 +31,7 @@
             <br>
         </div>
 
-        <div :id="contentGroup.id" v-if="contentGroup.mode==='right'" class="box">
+        <div :id="contentGroup.id" v-if="contentGroup.mode==='right'" class="container box">
             <div class="left-panel content">
                 <p class="title title-large">
                     {{contentGroup.title}}
@@ -57,10 +57,20 @@
 </script>
 
 <style scoped>
+    .bg-with-color{
+        background-color: rgba(240,220,212,0.31)
+    }
+
+    .container{
+        padding: 60px 48px;
+        /*background-color: #f6f7fb;*/
+        /*width:fill-available;*/
+        width:-webkit-fill-available;
+    }
+
     .box{
-        width: 100%;
         display: table;
-        margin: 100px 0;
+        margin: 40px 0;
     }
 
     img{

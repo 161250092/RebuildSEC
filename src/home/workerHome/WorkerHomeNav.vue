@@ -17,6 +17,10 @@
             return {
                 leftMenuItemList: [
                     {
+                        optionName: '首页',
+                        url: '/'
+                    },
+                    {
                         optionName: '平台介绍',
                         url: '/workerHome'
                     },
