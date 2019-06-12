@@ -1,5 +1,6 @@
 export default [
     {
+        id: 'OIAGQ23OIHRW',
         requester: '发布者1',
         title: '任务1',
         type: 'imgLabel',
@@ -9,6 +10,7 @@ export default [
         description: 'aksjdhgkjahgk'
     },
     {
+        id: 'HAD237RJSKF',
         requester: '发布者2',
         title: '任务2',
         type: 'frameLabel',
@@ -18,6 +20,7 @@ export default [
         description: 'poiwhugfahvjbs'
     },
     {
+        id: 'H235AGDFSKF',
         requester: '发布者3',
         title: '任务3',
         type: 'areaLabel',
@@ -27,6 +30,7 @@ export default [
         description: 'poiwhugfahvjbs'
     },
     {
+        id: '23RSAB32JSKF',
         requester: '发布者1',
         title: '任务1',
         type: 'imgLabel',

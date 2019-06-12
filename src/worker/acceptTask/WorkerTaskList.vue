@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <p>{{searchCriteria}}</p>
+            <p>{{expandRowKeys}}</p>
 <!--            搜索框-->
             <div>
                 <el-row type="flex" justify="space-between">
@@ -22,8 +22,12 @@
             </div>
 <!--            表格-->
             <div>
-                <el-table :data="currentTaskList" style="width: 100%"
-                          :default-sort="{prop: 'endTime', order: 'ascending'}">
+                <el-table :data="currentTaskList"
+                          :row-key="getRowKey"
+                          :expand-row-keys="expandRowKeys"
+                          style="width: 100%"
+                          :default-sort="{prop: 'endTime', order: 'ascending'}"
+                          @row-click="handleClickTable">
 
                     <el-table-column type="expand">
                         <template slot-scope="props">
@@ -156,7 +160,9 @@
                     disabledDate(time) {
                         return time.getTime() <= Date.now();
                     },
-                }
+                },
+
+                expandRowKeys: []
             }
         },
         mounted() {
@@ -165,6 +171,13 @@
             })
         },
         methods: {
+            handleClickTable(row, event, index) {
+                if (this.expandRowKeys.indexOf(row.id) < 0) {
+                    this.expandRowKeys.push(row.id);
+                } else {
+                    this.expandRowKeys.splice(this.expandRowKeys.indexOf(row.id), 1);
+                }
+            },
             handleContinueWork(index, row) {
                 let url = '/' + row.type;
                 this.$router.push(url);
@@ -261,6 +274,9 @@
             formatDateFromTimestamp(row, column, cellValue, index) {
                 return unixTimeToDate(cellValue);
             },
+            getRowKey(row){
+                return row.id;
+            }
         }
     }
 </script>

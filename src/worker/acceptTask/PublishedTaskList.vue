@@ -24,8 +24,13 @@
 
 <!--            表格-->
             <div>
-                <el-table :data="currentTaskList" style="width: 100%"
-                          :default-sort="{prop: 'accepted', order: 'descending'}">
+                <el-table :data="currentTaskList"
+                          :row-key="getRowKey"
+                          :expand-row-keys="expandRowKeys"
+                          style="width: 100%"
+                          ref="taskTable"
+                          :default-sort="{prop: 'accepted', order: 'descending'}"
+                          @row-click="handleClickTable">
 
                     <el-table-column type="expand" inline>
                         <template slot-scope="props">
@@ -153,7 +158,9 @@
                     disabledDate(time) {
                         return time.getTime() <= Date.now();
                     },
-                }
+                },
+
+                expandRowKeys: []
             }
         },
         mounted() {
@@ -162,6 +169,13 @@
             })
         },
         methods: {
+            handleClickTable(row, event, index) {
+                if (this.expandRowKeys.indexOf(row.id) < 0) {
+                    this.expandRowKeys.push(row.id);
+                } else {
+                    this.expandRowKeys.splice(this.expandRowKeys.indexOf(row.id), 1);
+                }
+            },
             handleAccept(index, row) {
                 let url = '/' + row.type;
                 this.$router.push(url);
@@ -253,6 +267,9 @@
             },
             formatDateFromTimestamp(row, column, cellValue, index) {
                 return unixTimeToDate(cellValue);
+            },
+            getRowKey(row){
+                return row.id;
             }
         }
     }

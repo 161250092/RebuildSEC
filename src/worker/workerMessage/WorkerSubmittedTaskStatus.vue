@@ -45,11 +45,14 @@
                                      :formatter="formatTaskType" sortable></el-table-column>
                     <el-table-column prop="submittedTime" label="提交时间" width="170"
                                      :formatter="formatTimeFromTimestamp" sortable></el-table-column>
-                    <el-table-column prop="searchTaskStatus" label="任务状态" width="120">
+                    <el-table-column prop="taskStatus" label="任务状态" width="120">
                         <template slot-scope="scope">
-                            <el-tag :type="searchTaskStatusTagTypeName(scope.row.taskStatus)"
-                                    disable-transitions>{{formatTaskStatus(scope.row.taskStatus)}}
-                            </el-tag>
+<!--                            <el-tag :type="searchTaskStatusTagTypeName(scope.row.taskStatus)"-->
+<!--                                    disable-transitions>{{formatTaskStatus(scope.row.taskStatus)}}-->
+<!--                            </el-tag>-->
+                            <div :class="taskStatusTagTypeName(scope.row.taskStatus)">
+                                {{formatTaskStatus(scope.row.taskStatus)}}
+                            </div>
                         </template>
                     </el-table-column>
 
@@ -238,14 +241,14 @@
             formatTaskType(row, column, cellValue, index) {
                 return formatTaskTypeLabel(cellValue);
             },
-            formatTaskStatus(searchTaskStatusValue) {
-                return formatTaskStatusLabel(searchTaskStatusValue);
+            formatTaskStatus(taskStatusValue) {
+                return formatTaskStatusLabel(taskStatusValue);
             },
 
-            searchTaskStatusTagTypeName(row) {
+            taskStatusTagTypeName(taskStatusValue) {
                 let tagTypeName = '';
                 this.searchTaskStatus.forEach((item) => {
-                    if (item.value === row) {
+                    if (taskStatusValue === item.value) {
                         tagTypeName = item.tagTypeName;
                     }
                 });
@@ -263,5 +266,14 @@
 <style>
     .not-expand .el-table__expand-column .cell {
         display: none;
+    }
+    .primary {
+        color: #20a0ff;
+    }
+    .success {
+        color: #11b95c;
+    }
+    .danger {
+        color: #e64242;
     }
 </style>

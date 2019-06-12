@@ -1,6 +1,6 @@
 export default [
     {
-        id: 'JISNGS123',
+        id: 'JIS123NGS',
         requester: '发布者1',
         title: '任务1',
         accepted: 10000,
@@ -20,7 +20,7 @@ export default [
         description: 'poiwhugfahvjbs'
     },
     {
-        id: 'JISNGS123',
+        id: 'GS123JISN',
         requester: '发布者3',
         title: '任务2',
         accepted: 12000,
