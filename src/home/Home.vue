@@ -17,10 +17,10 @@
                 <el-col :span="6" v-for="(item, index) in cardList" :key="index" style="margin: 1em">
                     <el-card class="box-card" style="text-align:center;">
                         <div slot="header">
-                            <h3 v-if="!item.imgUrl" style="font-size:1.25em;font-weight:600;">{{item.title}}</h3>
+                            <h3 v-if="!item.imgUrl" class="card-title">{{item.title}}</h3>
                             <div v-if="item.imgUrl" style="display:table; width: -webkit-fill-available">
                                 <div style="display: table-cell; float: left; width: 65%">
-                                    <h3 style="font-size:1.25em;font-weight:600;">{{item.title}}</h3>
+                                    <h3 class="card-title">{{item.title}}</h3>
                                 </div>
                                 <div style="display: table-cell; float: right;width: 35%">
                                     <img class="card-image" :src="item.imgUrl">
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div>
-                            <p style="white-space:pre-wrap;line-height:1.5;">{{item.content}}</p>
+                            <p style="white-space:pre-wrap; line-height:1.5; font-size: 16px;">{{item.content}}</p>
                             <el-button style="margin: 0.25em 1em" type="text" v-on:click="toPage(item.url)">查看详情</el-button>
                         </div>
                     </el-card>
@@ -109,6 +109,12 @@
         width: 100%;
         height: 280px;
         padding-top: 20px;
+    }
+
+    .card-title{
+        font-size:1.5em;
+        font-weight:500;
+        margin: 0.75em 0;
     }
 
     .card-container{
