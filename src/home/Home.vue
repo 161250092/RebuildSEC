@@ -19,11 +19,11 @@
                         <div slot="header">
                             <h3 v-if="!item.imgUrl" class="card-title">{{item.title}}</h3>
                             <div v-if="item.imgUrl" style="display:table; width: -webkit-fill-available">
-                                <div style="display: table-cell; float: left; width: 65%">
-                                    <h3 class="card-title">{{item.title}}</h3>
-                                </div>
-                                <div style="display: table-cell; float: right;width: 35%">
+                                <div style="display: table-cell; float: left;width: 35%">
                                     <img class="card-image" :src="item.imgUrl">
+                                </div>
+                                <div style="display: table-cell; float: right; width: 65%">
+                                    <h3 class="card-title">{{item.title}}</h3>
                                 </div>
                             </div>
                         </div>
