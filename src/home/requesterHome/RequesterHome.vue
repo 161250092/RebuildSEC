@@ -18,7 +18,9 @@
 
 
         <div class="return-top-button-container">
-            <a href="/#/requesterHome"><div class="return-top-button" v-bind:style="{backgroundImage:'url('+ topButtonImgUrl+')'}"></div></a>
+            <a href="javascript:void(0);" @click="backToTop" title="返回至页面顶部">
+                <div class="return-top-button" v-bind:style="{backgroundImage:'url('+ topButtonImgUrl+')'}"></div>
+            </a>
         </div>
 
         <router-view></router-view>
@@ -84,6 +86,11 @@
                     imgUrl: require("@/assets/home/home_bg_0.png")
                 },
                 topButtonImgUrl: require("@/assets/home/top.png")
+            }
+        },
+        methods: {
+            backToTop(){
+                document.documentElement.scrollTop = 0;
             }
         },
         mounted(){
