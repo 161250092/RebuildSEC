@@ -52,8 +52,8 @@
             ];
             let infoList = [
                 {
-                    optionName: '个人中心',
-                    url: '/worker'
+                    optionName: '任务接受中心',
+                    url: '/workerPublishedTasks'
                 },
                 {
                     optionName: '登出',

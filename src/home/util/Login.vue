@@ -49,20 +49,25 @@
                     if (valid) {
                         console.log("Login Success!");
                         this.isLogin = true;
-                        if(targetMode === 'requester')
+                        if(targetMode === 'requester'){
                             localStorage.setItem("requester", _this.ruleForm.account);
-                        else
+                            this.$alert('即将前往个人中心', '登陆成功', {
+                                confirmButtonText: '确定',
+                                callback: action => {
+                                    this.$router.push(({path: "/personInformation"}));
+                                }
+                            });
+                        }
+                        else{
                             localStorage.setItem("worker", _this.ruleForm.account);
+                            this.$alert('即将前往任务接受中心', '登陆成功', {
+                                confirmButtonText: '确定',
+                                callback: action => {
+                                    this.$router.push(({path: "/workerPublishedTasks"}));
+                                }
+                            });
+                        }
 
-                        this.$alert('即将前往个人中心', '登陆成功', {
-                            confirmButtonText: '确定',
-                            callback: action => {
-                                if(targetMode === 'requester')
-                                    this.$router.push(({path: "/request"}));
-                                else if(targetMode === 'worker')
-                                    this.$router.push(({path: "/worker"}));
-                            }
-                        });
                         // let loginParams = { username: this.ruleForm.account, password: this.ruleForm.checkPass };
                         // requestLogin(loginParams).then(data => {
                         //     if(targetMode === 'requester')

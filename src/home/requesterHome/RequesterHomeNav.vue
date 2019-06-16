@@ -65,7 +65,7 @@
             let infoList = [
                 {
                     optionName: '个人中心',
-                    url: '/request'
+                    url: '/personInformation'
                 },
                 {
                     optionName: '登出',
