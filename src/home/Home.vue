@@ -18,7 +18,7 @@
                     <el-card class="box-card" style="text-align:center;">
                         <div slot="header">
                             <h3 v-if="!item.imgUrl" class="card-title">{{item.title}}</h3>
-                            <div v-if="item.imgUrl" style="display:table; width: -webkit-fill-available">
+                            <div v-if="item.imgUrl" style="display:table; width: 100%">
                                 <div style="display: table-cell; float: left;width: 35%">
                                     <img class="card-image" :src="item.imgUrl">
                                 </div>
@@ -89,7 +89,7 @@
                     {mode:1, title: '随时发布需求', content: '全国 10000+ 专业标注者为您服务', imgUrl: require("@/assets/home/home_bg_2.png")}
                 ],
                 cardList:[
-                    {title: '整体标注',  content: '对图像整体进行描述\n添加指定类型的标签', url:'/requesterHome#ancher-imgMark', imgUrl:''},
+                    {title: '整体标注',  content: '对图像整体进行描述\n添加指定类型的标签', url:'/requesterHome#ancher-imgMark', imgUrl:require('@/assets/home/img_logo.png')},
                     {title: '方框标注',  content: '对图像特定元素进行标注\n划分方框标识出需要识别的元素', url:'/requesterHome#ancher-frameMark', imgUrl:require("@/assets/home/frame_logo.png")},
                     {title: '区域标注',  content: '对图像特定元素进行标注\n描点连线标识出需要识别的元素', url:'/requesterHome#ancher-areaMark', imgUrl:require("@/assets/home/area_logo.png")}
                 ]
