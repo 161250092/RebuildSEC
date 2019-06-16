@@ -1,9 +1,8 @@
 <template>
     <div>
-        <p>{{searchCriteria}}</p>
         <div>
 <!--            搜索框-->
-            <div>
+            <div style="margin: 10px">
                 <el-row type="flex" justify="space-between">
                     <el-input v-model="searchCriteria.string" style="width: 90%"
                               placeholder="搜索所有任务">

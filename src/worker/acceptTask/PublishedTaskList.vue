@@ -1,10 +1,8 @@
 <template>
     <div>
         <div>
-            <p>{{searchCriteria}}</p>
-
 <!--            搜索框-->
-            <div>
+            <div style="margin: 10px">
                 <el-row type="flex" justify="space-between">
                     <el-input v-model="searchCriteria.string" style="width: 90%"
                               placeholder="搜索所有任务">
@@ -177,8 +175,16 @@
                 }
             },
             handleAccept(index, row) {
-                let url = '/' + row.type;
-                this.$router.push(url);
+                let url = '/worker_' + row.type;
+                // this.$router.push(url);
+                let _this = this;
+                this.$confirm('确认接受吗?', '提示', {
+                    //type: 'warning'
+                }).then(() => {
+                    _this.$router.push(url);
+                }).catch(() => {
+
+                });
             },
             handlePageSizeChange(newPageSize) {
                 this.pageSize = newPageSize;

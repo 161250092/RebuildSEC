@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="height: 400px">
+        <div style="height: 400px;margin-top: 15px">
             <div style="float: left">
                 <div style="margin-top: 15px">
                     <div id="taskStatusOverview" style="width:500px;height:300px;"></div>

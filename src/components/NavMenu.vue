@@ -54,8 +54,8 @@
             </aside>
             <section class="content-container">
                 <div class="grid-content bg-purple-light">
-                    <el-col :span="24" class="breadcrumb-container">
-                        <strong class="title">{{$route.name}}</strong>
+                    <el-col :span="24" class="breadcrumb-container" style="margin-bottom: 15px">
+                        <strong class="title" style="position: center">{{$route.name}}</strong>
                         <el-breadcrumb separator="/" class="breadcrumb-inner">
                             <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
                                 {{ item.name }}
@@ -114,7 +114,8 @@
                     //type: 'warning'
                 }).then(() => {
                     sessionStorage.removeItem('user');
-                    _this.$router.push('/login');
+                    // _this.$router.push('/login');
+                    _this.$router.push('/');
                 }).catch(() => {
 
                 });

@@ -11,8 +11,7 @@
             </div>
 
 <!--            表格-->
-            <div>
-                <p>{{currentMessageList}}</p>
+            <div style="margin-top: 10px">
                 <el-table :data="currentMessageList"
                           style="width: 100%"
                           tooltip-effect="dark"

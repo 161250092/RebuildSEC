@@ -1,9 +1,8 @@
 <template>
     <div>
         <div>
-            <p>{{expandRowKeys}}</p>
 <!--            搜索框-->
-            <div>
+            <div style="margin: 10px">
                 <el-row type="flex" justify="space-between">
                     <el-input v-model="searchCriteria.string" style="width: 90%"
                               placeholder="搜索所有任务">
@@ -179,7 +178,7 @@
                 }
             },
             handleContinueWork(index, row) {
-                let url = '/' + row.type;
+                let url = '/' + 'worker_' + row.type;
                 this.$router.push(url);
             },
             handlePageSizeChange(newPageSize) {
