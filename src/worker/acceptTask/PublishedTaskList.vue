@@ -4,7 +4,7 @@
 <!--            搜索框-->
             <div style="margin: 10px">
                 <el-row type="flex" justify="space-between">
-                    <el-input v-model="searchCriteria.string" style="width: 90%"
+                    <el-input v-model="searchCriteria.string" style="width: 90%" class="element-box"
                               placeholder="搜索所有任务">
                         <el-select slot="prepend" style="width: 120px;"
                                    v-model="searchCriteria.option" placeholder="请选择">
@@ -15,65 +15,67 @@
                         <el-button slot="append" icon="search" @click="searchTasks"></el-button>
                     </el-input>
 
-                    <el-button icon="el-icon-edit"
+                    <el-button icon="el-icon-edit" class="element-box"
                                @click="isFilterOpen = true">高级搜索</el-button>
                 </el-row>
             </div>
 
-<!--            表格-->
             <div>
-                <el-table :data="currentTaskList"
-                          :row-key="getRowKey"
-                          :expand-row-keys="expandRowKeys"
-                          style="width: 100%"
-                          ref="taskTable"
-                          :default-sort="{prop: 'accepted', order: 'descending'}"
-                          @row-click="handleClickTable">
+                <!--            表格-->
+                <div>
+                    <el-table :data="currentTaskList"
+                              :row-key="getRowKey"
+                              :expand-row-keys="expandRowKeys"
+                              style="width: 100%"
+                              ref="taskTable"
+                              :default-sort="{prop: 'accepted', order: 'descending'}"
+                              @row-click="handleClickTable">
 
-                    <el-table-column type="expand" inline>
-                        <template slot-scope="props">
-                            <el-form lable-position="left">
-                                <el-form-item label="任务ID">
-                                    <span>{{props.row.id}}</span>
-                                </el-form-item>
-                                <el-form-item label="任务描述">
-                                    <span>{{props.row.description}}</span>
-                                </el-form-item>
-                            </el-form>
-                        </template>
-                    </el-table-column>
+                        <el-table-column type="expand" inline>
+                            <template slot-scope="props">
+                                <el-form lable-position="left">
+                                    <el-form-item label="任务ID">
+                                        <span>{{props.row.id}}</span>
+                                    </el-form-item>
+                                    <el-form-item label="任务描述">
+                                        <span>{{props.row.description}}</span>
+                                    </el-form-item>
+                                </el-form>
+                            </template>
+                        </el-table-column>
 
-                    <el-table-column prop="requester" label="发布者" width="150"></el-table-column>
-                    <el-table-column prop="title" label="任务标题" width="300"></el-table-column>
-                    <el-table-column prop="accepted" label="接受数" width="100" sortable></el-table-column>
-                    <el-table-column prop="type" label="类型" width="100"
-                                     :formatter="formatTaskType" sortable></el-table-column>
-                    <el-table-column prop="reward" label="奖励" width="100"
-                                     :formatter="formatRewardFromNumber" sortable></el-table-column>
-                    <el-table-column prop="endTime" label="截止时间" width="120"
-                                     :formatter="formatDateFromTimestamp" sortable></el-table-column>
+                        <el-table-column prop="requester" label="发布者" width="150"></el-table-column>
+                        <el-table-column prop="title" label="任务标题" width="300"></el-table-column>
+                        <el-table-column prop="accepted" label="接受数" width="100" sortable></el-table-column>
+                        <el-table-column prop="type" label="类型" width="100"
+                                         :formatter="formatTaskType" sortable></el-table-column>
+                        <el-table-column prop="reward" label="奖励" width="100"
+                                         :formatter="formatRewardFromNumber" sortable></el-table-column>
+                        <el-table-column prop="endTime" label="截止时间" width="120"
+                                         :formatter="formatDateFromTimestamp" sortable></el-table-column>
 
-                    <el-table-column prop="actions" label="操作" align="right">
-                        <template slot-scope="scope">
-                            <el-button size="mini" @click="handleAccept(scope.$index, scope.row)">接受并工作</el-button>
-                        </template>
-                    </el-table-column>
+                        <el-table-column prop="actions" label="操作" align="right">
+                            <template slot-scope="scope">
+                                <el-button size="mini" @click="handleAccept(scope.$index, scope.row)">接受并工作</el-button>
+                            </template>
+                        </el-table-column>
 
-                </el-table>
-            </div>
+                    </el-table>
+                </div>
 
-<!--            分页栏-->
-            <div style="text-align: center">
-                <el-pagination
-                        background
-                        @size-change="handlePageSizeChange"
-                        @current-change="handlePageCurrentChange"
-                        :current-page="currentPage"
-                        :page-sizes="[10, 20, 30, 40]"
-                        :page-size="pageSize"
-                        layout="total, sizes, prev, pager, next, jumper"
-                        :total="totalCount"
-                ></el-pagination>
+                <!--            分页栏-->
+                <div style="margin-top: 15px;text-align: right">
+                    <el-pagination
+                            background
+                            @size-change="handlePageSizeChange"
+                            @current-change="handlePageCurrentChange"
+                            :current-page="currentPage"
+                            :page-sizes="[10, 20, 30, 40]"
+                            :page-size="pageSize"
+                            layout="total, sizes, prev, pager, next, jumper"
+                            :total="totalCount"
+                    ></el-pagination>
+                </div>
             </div>
         </div>
 
@@ -282,5 +284,7 @@
 </script>
 
 <style scoped>
-
+    .element-box {
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+    }
 </style>
