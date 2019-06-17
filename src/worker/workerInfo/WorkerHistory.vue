@@ -39,7 +39,7 @@
 
         <div>
             <div>
-                <h3>任务状态</h3>
+                <p style="font-size: 20px;font-weight: bold;margin-left: 45%">任务状态</p>
             </div>
 
 
@@ -232,5 +232,9 @@
         .overview-sub-box {
             border-top-style: solid;
         }
+    }
+
+    .element-box {
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
     }
 </style>

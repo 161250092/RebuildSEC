@@ -3,8 +3,11 @@
         <div>
 <!--            搜索框-->
             <div style="margin: 10px">
+                <div>
+
+                </div>
                 <el-row type="flex" justify="space-between">
-                    <el-input v-model="searchCriteria.string" style="width: 90%"
+                    <el-input v-model="searchCriteria.string" style="width: 90%" class="element-box"
                               placeholder="搜索所有任务">
                         <el-select slot="prepend" style="width: 120px;"
                                    v-model="searchCriteria.option" placeholder="请选择">
@@ -15,7 +18,7 @@
                         <el-button slot="append" icon="search" @click="searchTasks"></el-button>
                     </el-input>
 
-                    <el-button icon="el-icon-edit"
+                    <el-button icon="el-icon-edit" class="element-box"
                                @click="isFilterOpen = true">高级搜索</el-button>
                 </el-row>
             </div>
@@ -64,7 +67,7 @@
                 </el-table>
             </div>
 <!--            分页栏-->
-            <div style="text-align: center">
+            <div style="margin-top: 15px;text-align: right">
                 <el-pagination
                         background
                         @size-change="handlePageSizeChange"
@@ -281,5 +284,7 @@
 </script>
 
 <style scoped>
-
+    .element-box {
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+    }
 </style>
