@@ -26,6 +26,7 @@
                     <el-table :data="currentTaskList"
                               :row-key="getRowKey"
                               :expand-row-keys="expandRowKeys"
+                              :row-class-name="tableRowClassName"
                               style="width: 100%"
                               ref="taskTable"
                               :default-sort="{prop: 'accepted', order: 'descending'}"
@@ -278,13 +279,23 @@
             },
             getRowKey(row){
                 return row.id;
+            },
+            tableRowClassName(row, rowIndex) {
+                if (rowIndex % 2 === 1) {
+                    return 'success-row';
+                }
+                return '';
             }
         }
     }
 </script>
 
-<style scoped>
+<style>
     .element-box {
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+    }
+
+    .el-table .success-row {
+        background: oldlace;
     }
 </style>
