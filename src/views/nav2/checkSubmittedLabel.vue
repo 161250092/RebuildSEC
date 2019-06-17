@@ -55,16 +55,17 @@
                             type="warning"
                             @click="reject(scope.row)">驳回
                     </el-button>
-
-                    <el-button
-                            size="mini"
-                            type="danger"
-                            icon="el-icon-delete"
-                            @click="abolish(scope.row)">废弃
-                    </el-button>
                 </template>
             </el-table-column>
 
+            <el-table-column>
+                <el-button
+                        size="mini"
+                        type="danger"
+                        icon="el-icon-delete"
+                        @click="abolish(scope.row)">废弃
+                </el-button>
+            </el-table-column>
         </el-table>
         <el-pagination
                 background

@@ -16,21 +16,26 @@
 		<el-table-column label="积分奖励" prop="reward">
 		</el-table-column>
 
-		<el-table-column label="">
-			<template slot-scope="scope">
-				<el-button
-						size="mini"
-						type="success"
-						@click="getIt(scope.row)">已了解
-				</el-button>
-			</template>
-		</el-table-column>
+<!--		<el-table-column label="">-->
+<!--			<template slot-scope="scope">-->
+<!--				<el-button-->
+<!--						size="mini"-->
+<!--						type="success"-->
+<!--						@click="getIt(scope.row)">已了解-->
+<!--				</el-button>-->
+<!--			</template>-->
+<!--		</el-table-column>-->
 	</el-table>
 		<el-pagination
-				background
-				layout="prev, pager, next"
+				@size-change="handleSizeChange"
+				@current-change="handleCurrentChange"
+				:current-page.sync="currentPage3"
+				:page-size="100"
+				layout="prev, pager, next, jumper"
 				:total="1000">
 		</el-pagination>
+
+
 		<br>
 
 
@@ -45,6 +50,7 @@
 	export default {
 		data() {
 			return {
+				currentPage3:false,
 				requests:[
 					{
 						messageId:1,
@@ -79,7 +85,13 @@
 					type: 'success'
 				});
 			},
+
+			handleSizeChange(){
+
+			}
 		},
+
+
 		mounted() {
 
 		}

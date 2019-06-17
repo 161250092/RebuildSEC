@@ -11,7 +11,7 @@
 			</el-col>
 			<el-col :span="4" class="userinfo">
 				<el-dropdown trigger="hover">
-					<span class="el-dropdown-link userinfo-inner"><img src='../assets/userPicture.png' />张某某</span>
+					<span class="el-dropdown-link userinfo-inner"><img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2922170376,2371336021&fm=27&gp=0.jpghttps://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2922170376,2371336021&fm=27&gp=0.jpghttps://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2922170376,2371336021&fm=27&gp=0.jpg" />张某某</span>
 					<el-dropdown-menu slot="dropdown">
 <!--						<el-dropdown-item>我的消息</el-dropdown-item>-->
 <!--						<el-dropdown-item>设置</el-dropdown-item>-->
