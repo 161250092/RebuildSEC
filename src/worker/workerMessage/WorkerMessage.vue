@@ -15,7 +15,6 @@
                 <el-table :data="currentMessageList"
                           style="width: 100%"
                           tooltip-effect="dark"
-                          row-style="height:50px;"
                           :row-class-name="tableRowClassName"
                           :default-sort="{prop: 'date', order: 'descending'}"
                           @selection-change="handleTableSelectionChange"
@@ -30,9 +29,7 @@
 
                     <el-table-column prop="showDetail">
                         <template slot-scope="scope">
-                            <el-button size="medium"
-                                       round
-                                       @click="showMessageDetail(scope.$index, scope.row)">
+                            <el-button type="text" @click="showMessageDetail(scope.$index, scope.row)">
                                 查看
                             </el-button>
                         </template>
@@ -64,7 +61,7 @@
                        :close-on-press-escape="true">
                 <p style="font-size: 30px;font-weight: bold;margin: 0 0 20px 40%">信息详情</p>
                 <el-row>
-                    <el-col :span="10">
+                    <el-col :span="20">
                         <el-form class="editor-form"
                                  :model="selectedMessage"
                                  status-icon

@@ -1,29 +1,29 @@
 export default [
     {
-        id: 'DSBTYUFS1234AJ123',
-        requester: '发布者1',
-        title: '任务1',
+        id: 'T8lArHY7hpI5deJb',
+        requester: 'Scoutlt',
+        title: '菜单分类',
         type: 'imgLabel',
         submittedTime: 1565438000000,
         taskStatus: 'verifying',
         reason: ''
     },
     {
-        id: 'DSDS123FGGFDVAJ1',
-        requester: '发布者2',
-        title: '任务2',
-        type: 'imgLabel',
+        id: 'Pm20E5RxnIW9zXuL',
+        requester: 'str123343',
+        title: '标注',
+        type: 'frameLabel',
         submittedTime: 1560987000000,
         taskStatus: 'rejected',
-        reason: 'dfsagnhh'
+        reason: '标注不符合要求，区域太小'
     },
     {
-        id: '179867DFFS1234AJ18',
-        requester: '发布者2',
-        title: '任务3',
-        type: 'imgLabel',
+        id: 'gxrdhBkGRta2SQAU',
+        requester: 'Celine Chao',
+        title: '标注细胞',
+        type: 'areaLabel',
         submittedTime: 1876438000000,
         taskStatus: 'accepted',
         reason: ''
-    }
+    },
 ];

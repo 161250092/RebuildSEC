@@ -1,42 +1,42 @@
 export default [
     {
-        id: 'OIAGQ23OIHRW',
-        requester: '发布者1',
-        title: '任务1',
-        type: 'imgLabel',
-        reward: 0.05,
-        schedule: 0.95,
+        id: 'Pm20E5RxnIW9zXuL',
+        requester: 'str123343',
+        title: '标注',
+        accepted: 1131,
+        type: 'areaLabel',
+        reward: 0.41,
         endTime: 1569888000000,
-        description: 'aksjdhgkjahgk'
+        description: 'View photos, answer a few questions, and provide some non-identifying information about yourself (does not work properly with Safari browser)'
     },
     {
-        id: 'HAD237RJSKF',
-        requester: '发布者2',
-        title: '任务2',
+        id: 'vyUanuFzXgqEwpxk',
+        requester: 'Haoling Qiu',
+        title: '识别物体',
+        accepted: 8550,
         type: 'frameLabel',
         reward: 0.05,
-        schedule: 0.1,
-        endTime: 1573516800000,
-        description: 'poiwhugfahvjbs'
-    },
-    {
-        id: 'H235AGDFSKF',
-        requester: '发布者3',
-        title: '任务3',
-        type: 'areaLabel',
-        reward: 0.5,
-        schedule: 0.342,
-        endTime: 1577664000000,
-        description: 'poiwhugfahvjbs'
-    },
-    {
-        id: '23RSAB32JSKF',
-        requester: '发布者1',
-        title: '任务1',
-        type: 'imgLabel',
-        reward: 0.05,
-        schedule: 0.95,
         endTime: 1569888000000,
-        description: 'aksjdhgkjahgk'
+        description: 'Read a sentence from a news article, and classify whether an event was mentioned in the sentence.'
+    },
+    {
+        id: 'AbwaUNoBYjxGeEd6',
+        requester: 'VactationAPI',
+        title: '找出图片',
+        accepted: 12365,
+        type: 'imgLabel',
+        reward: 0.04,
+        endTime: 1569888000000,
+        description: 'You will log in to Pinterest to complete simple tasks.'
+    },
+    {
+        id: 'HOtZdSQmf8A2TN3R',
+        requester: 'JS Berman',
+        title: '找出图片关键区域',
+        accepted: 12000,
+        type: 'areaLabel',
+        reward: 0.08,
+        endTime: 1569888000000,
+        description: 'In this task, you will be using your Polish skills to write what you would say in the given contexts.'
     },
 ];

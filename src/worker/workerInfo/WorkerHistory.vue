@@ -1,13 +1,13 @@
 <template>
     <div>
         <div style="height: 400px;margin-top: 15px">
-            <div style="float: left">
+            <div style="float: left; width: 50%;">
                 <div style="margin-top: 15px">
                     <div id="taskStatusOverview" style="width:500px;height:300px;"></div>
                 </div>
             </div>
 
-            <div style="float: right;">
+            <div style="float: right; ; width: 50%;">
                 <div style="margin-left: 50px">
                     <el-row class="row-bg" justify="space-around">
                         <el-col :span="10">

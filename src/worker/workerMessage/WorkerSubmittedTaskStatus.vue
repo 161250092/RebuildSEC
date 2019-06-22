@@ -31,7 +31,7 @@
                         <template slot-scope="props">
                             <el-form lable-position="left">
                                 <el-form-item label="理由">
-                                    <span>{{props.row.description}}</span>
+                                    <span>{{props.row.reason}}</span>
                                 </el-form-item>
                             </el-form>
                         </template>
@@ -256,7 +256,7 @@
 
             setTableColumnClassName(row, index){
                 // 通过自己的逻辑返回一个class或者空
-                return row.searchTaskStatus === 'rejected' ? '' : 'not-expand';
+                return row.taskStatus === 'rejected' ? '' : 'not-expand';
             },
         }
     }

@@ -35,6 +35,9 @@
                     <el-table-column type="expand">
                         <template slot-scope="props">
                             <el-form lable-position="left">
+                                <el-form-item label="任务ID">
+                                    <span>{{props.row.id}}</span>
+                                </el-form-item>
                                 <el-form-item label="任务描述">
                                     <span>{{props.row.description}}</span>
                                 </el-form-item>
