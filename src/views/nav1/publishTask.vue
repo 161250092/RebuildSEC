@@ -164,7 +164,6 @@
 
         methods:{
             mark(task){
-                alert("去标注");
                 if(task.type==="整体标注"){
                     this.$router.push('/imgLabel');
                 }

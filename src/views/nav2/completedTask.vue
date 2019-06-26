@@ -163,7 +163,6 @@
             }
 
         },
-
         methods:{
             check(task){
                 //this.details = task;
@@ -185,6 +184,24 @@
             download(task){
                 this.showDownloadChoices = true;
             }
+        },
+        mounted() {
+            for(let i=4;i<10;i++){
+                let a=
+                    {
+                        taskId:"000000"+i,
+                        workTime:"2019-06-12",
+                        description:"请写出图片中人物特征",
+                        type:"整体标注",
+                        taskDescription:"image about rivers",
+                        reward:100,
+                        peopleNum:100
+                    };
+                this.completedTasks.push(a);
+            }
+
+
+
         }
 
 

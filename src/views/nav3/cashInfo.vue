@@ -125,8 +125,22 @@
 
 			}
 
-        }
-    }
+        },
+
+        mounted() {
+        	for(let i=4;i<7;i++) {
+        		let a = {
+					messageId:i,
+					type:"收入",
+					quantity:100,
+					reason:"充值",
+				};
+				this.cashInfo.push(a);
+
+			}
+
+		}
+	}
 </script>
 
 <style scoped>

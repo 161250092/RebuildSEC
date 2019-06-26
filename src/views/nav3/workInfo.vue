@@ -93,7 +93,14 @@
 
 
 		mounted() {
-
+			for(let i=4;i<10;i++){
+				let a = {
+						messageId:i,
+					    taskId:i,
+						workerName:"h",
+						reward:100,};
+				this.requests.push(a);
+			}
 		}
 	}
 

@@ -220,6 +220,17 @@
                     }
                 }
             }
+        },
+        mounted() {
+            for(let i=4;i<10;i++){
+                let a =  {
+                    taskId:"412512"+i,
+                    workerName:"hhh",
+                    score:94,
+                    type:"区域标注"
+                };
+                this.tasks.push(a);
+            }
         }
 
     }
