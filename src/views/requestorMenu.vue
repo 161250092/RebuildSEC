@@ -18,7 +18,7 @@
         },
 
         created() {
-            this.$router.push("/main");
+            this.$router.push("/personInformation");
         }
     }
 </script>

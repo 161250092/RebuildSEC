@@ -17,15 +17,29 @@
                 <el-col :span="6" v-for="(item, index) in cardList" :key="index" style="margin: 1em">
                     <el-card class="box-card" style="text-align:center;">
                         <div slot="header">
-                            <h3 style="font-size:1.25em;font-weight:600;">{{item.title}}</h3>
+                            <h3 v-if="!item.imgUrl" class="card-title">{{item.title}}</h3>
+                            <div v-if="item.imgUrl" style="display:table; width: 100%">
+                                <div style="display: table-cell; float: left;width: 35%">
+                                    <img class="card-image" :src="item.imgUrl">
+                                </div>
+                                <div style="display: table-cell; float: right; width: 65%">
+                                    <h3 class="card-title">{{item.title}}</h3>
+                                </div>
+                            </div>
                         </div>
                         <div>
-                            <p style="white-space:pre-wrap;line-height:1.5;">{{item.content}}</p>
-                            <el-button style="margin: 1em 1em" type="text" v-on:click="toPage(item.url)">查看详情</el-button>
+                            <p style="white-space:pre-wrap; line-height:1.5; font-size: 16px;">{{item.content}}</p>
+                            <el-button style="margin: 0.25em 1em" type="text" v-on:click="toPage(item.url)">查看详情</el-button>
                         </div>
                     </el-card>
                 </el-col>
             </el-row>
+        </div>
+
+        <div class="foot">
+            <p class="text">
+              南京大学  软件学院  人机交互作业小组 &nbsp;&nbsp;&nbsp; CopyRight @2019 All Rights Reserved.
+            </p>
         </div>
         <router-view></router-view>
     </div>
@@ -75,9 +89,9 @@
                     {mode:1, title: '随时发布需求', content: '全国 10000+ 专业标注者为您服务', imgUrl: require("@/assets/home/home_bg_2.png")}
                 ],
                 cardList:[
-                    {title: '整体标注',  content: '对图像整体进行描述\n添加指定类型的标签', url:'/requesterHome#ancher-imgMark'},
-                    {title: '方框标注',  content: '对图像特定元素进行标注\n划分方框标识出需要识别的元素', url:'/requesterHome#ancher-frameMark'},
-                    {title: '区域标注',  content: '对图像特定元素进行标注\n描点连线标识出需要识别的元素', url:'/requesterHome#ancher-areaMark'}
+                    {title: '整体标注',  content: '对图像整体进行描述\n添加指定类型的标签', url:'/requesterHome#ancher-imgMark', imgUrl:require('@/assets/home/img_logo.png')},
+                    {title: '方框标注',  content: '对图像特定元素进行标注\n划分方框标识出需要识别的元素', url:'/requesterHome#ancher-frameMark', imgUrl:require("@/assets/home/frame_logo.png")},
+                    {title: '区域标注',  content: '对图像特定元素进行标注\n描点连线标识出需要识别的元素', url:'/requesterHome#ancher-areaMark', imgUrl:require("@/assets/home/area_logo.png")}
                 ]
             }
         },
@@ -97,8 +111,34 @@
         padding-top: 20px;
     }
 
+    .card-title{
+        font-size:1.5em;
+        font-weight:500;
+        margin: 0.75em 0;
+    }
+
     .card-container{
         margin: 2em 1em;
+    }
+
+    .card-image{
+        width: 60px;
+        height: 60px;
+        /*float: right;*/
+    }
+
+    .foot{
+        position: fixed;
+        bottom: 0;
+        background-color: #110233;
+        width: 100%;
+        padding: 0 4em;
+    }
+
+    .text{
+        color: #ffffff;
+        font-size: 12px;
+        text-align: center;
     }
 
     @media screen and (max-width: 800px){

@@ -28,7 +28,7 @@
         },
         data() {
             return {
-                menuIndex: '0',
+                menuIndex: '1',
                 banner:{
                     mode: 2,
                     title: '标注者联盟',
@@ -56,7 +56,5 @@
 </script>
 
 <style scoped>
-    .detail{
-        margin: 0 4em;
-    }
+
 </style>

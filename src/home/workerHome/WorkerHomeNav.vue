@@ -17,6 +17,10 @@
             return {
                 leftMenuItemList: [
                     {
+                        optionName: '首页',
+                        url: '/'
+                    },
+                    {
                         optionName: '平台介绍',
                         url: '/workerHome'
                     },
@@ -48,8 +52,8 @@
             ];
             let infoList = [
                 {
-                    optionName: '个人中心',
-                    url: '/worker'
+                    optionName: '任务接受中心',
+                    url: '/workerPublishedTasks'
                 },
                 {
                     optionName: '登出',

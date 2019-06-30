@@ -100,7 +100,10 @@
             },
 
             submit(){
-              alert("已提交");
+                this.$message({
+                    message: '提交成功',
+                    type: 'success'
+                });
             },
 
 
@@ -110,7 +113,10 @@
                     this.currentImageUrl = this.imgUrl[this.currentIndex - 1];
                     this.tagsInShowing = this.tagsInfo[this.currentIndex - 1];
                 } else
-                    alert("已经是第一张");
+                    this.$message({
+                        message: '第一张',
+                        type: 'warning'
+                    });
 
 
             },
@@ -120,7 +126,10 @@
                     this.currentImageUrl = this.imgUrl[this.currentIndex - 1];
                     this.tagsInShowing = this.tagsInfo[this.currentIndex - 1];
                 } else
-                    alert("已经是最后一张");
+                    this.$message({
+                        message: '最后一张',
+                        type: 'warning'
+                    });
 
             }
 

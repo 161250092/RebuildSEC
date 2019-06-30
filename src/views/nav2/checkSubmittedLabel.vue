@@ -55,16 +55,17 @@
                             type="warning"
                             @click="reject(scope.row)">驳回
                     </el-button>
-
-                    <el-button
-                            size="mini"
-                            type="danger"
-                            icon="el-icon-delete"
-                            @click="abolish(scope.row)">废弃
-                    </el-button>
                 </template>
             </el-table-column>
 
+            <el-table-column>
+                <el-button
+                        size="mini"
+                        type="danger"
+                        icon="el-icon-delete"
+                        @click="abolish(scope.row)">废弃
+                </el-button>
+            </el-table-column>
         </el-table>
         <el-pagination
                 background
@@ -218,6 +219,17 @@
                         return;
                     }
                 }
+            }
+        },
+        mounted() {
+            for(let i=4;i<10;i++){
+                let a =  {
+                    taskId:"412512"+i,
+                    workerName:"hhh",
+                    score:94,
+                    type:"区域标注"
+                };
+                this.tasks.push(a);
             }
         }
 

@@ -29,7 +29,7 @@
         },
         data() {
             return {
-                menuIndex: '1',
+                menuIndex: '2',
                 banner:{
                     mode: 2,
                     title: '标注者指引',
@@ -63,7 +63,5 @@
 </script>
 
 <style scoped>
-    .detail{
-        margin: 0 4em;
-    }
+
 </style>

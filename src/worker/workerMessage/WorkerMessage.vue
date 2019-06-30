@@ -11,14 +11,14 @@
             </div>
 
 <!--            表格-->
-            <div>
-                <p>{{currentMessageList}}</p>
+            <div style="margin-top: 10px">
                 <el-table :data="currentMessageList"
                           style="width: 100%"
                           tooltip-effect="dark"
                           :row-class-name="tableRowClassName"
                           :default-sort="{prop: 'date', order: 'descending'}"
-                          @selection-change="handleTableSelectionChange">
+                          @selection-change="handleTableSelectionChange"
+                          @cell-dblclick="showMessageDetailByDblclick">
 
                     <el-table-column type="selection" width="55"></el-table-column>
 
@@ -29,7 +29,7 @@
 
                     <el-table-column prop="showDetail">
                         <template slot-scope="scope">
-                            <el-button size="medium" @click="showMessageDetail(scope.$index, scope.row)">
+                            <el-button type="text" @click="showMessageDetail(scope.$index, scope.row)">
                                 查看
                             </el-button>
                         </template>
@@ -39,7 +39,7 @@
             </div>
 
 <!--            分页栏-->
-            <div style="text-align: center">
+            <div style="margin-top: 15px;text-align: right">
                 <el-pagination
                         background
                         @size-change="handlePageSizeChange"
@@ -54,28 +54,29 @@
         </div>
 
         <div>
-            <el-dialog title="信息"
+            <el-dialog title=""
                        width="30%"
                        :visible.sync="isMessageDialogOpen"
                        :close-on-click-modal="true"
                        :close-on-press-escape="true">
+                <p style="font-size: 30px;font-weight: bold;margin: 0 0 20px 40%">信息详情</p>
                 <el-row>
-                    <el-col :span="10">
+                    <el-col :span="20">
                         <el-form class="editor-form"
                                  :model="selectedMessage"
                                  status-icon
                                  ref="selectedMessage"
-                                 label-width="100px">
+                                 label-width="100px" label-he>
 
-                            <el-form-item  label="标题">
+                            <el-form-item  label="标题" class="message-title">
                                 <span>{{selectedMessage.title}} </span>
                             </el-form-item>
 
-                            <el-form-item label="发送者">
+                            <el-form-item label="发送者" class="message-title">
                                 <span>{{selectedMessage.sender}}</span>
                             </el-form-item>
 
-                            <el-form-item label="发送时间">
+                            <el-form-item label="发送时间" class="message-title">
                                 <span>{{directlyFormatDateFromTimestamp(selectedMessage.date)}}</span>
                             </el-form-item>
 
@@ -122,6 +123,11 @@
         },
         methods: {
             showMessageDetail(rowIndex, row) {
+                row.hasRead = true;
+                this.selectedMessage = row;
+                this.isMessageDialogOpen = true;
+            },
+            showMessageDetailByDblclick(row, column, cell, event) {
                 row.hasRead = true;
                 this.selectedMessage = row;
                 this.isMessageDialogOpen = true;
@@ -195,5 +201,14 @@
 
     .el-table .has-read-row {
 
+    }
+
+    .message-title {
+        margin-bottom: 3px;
+        font-weight: bold;
+    }
+
+    .element-box {
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
     }
 </style>

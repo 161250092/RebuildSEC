@@ -1,11 +1,13 @@
 <template>
     <div>
         <div>
-            <p>{{searchCriteria}}</p>
 <!--            搜索框-->
-            <div>
+            <div style="margin: 10px">
+                <div>
+
+                </div>
                 <el-row type="flex" justify="space-between">
-                    <el-input v-model="searchCriteria.string" style="width: 90%"
+                    <el-input v-model="searchCriteria.string" style="width: 90%" class="element-box"
                               placeholder="搜索所有任务">
                         <el-select slot="prepend" style="width: 120px;"
                                    v-model="searchCriteria.option" placeholder="请选择">
@@ -16,18 +18,26 @@
                         <el-button slot="append" icon="search" @click="searchTasks"></el-button>
                     </el-input>
 
-                    <el-button icon="el-icon-edit"
+                    <el-button icon="el-icon-edit" class="element-box"
                                @click="isFilterOpen = true">高级搜索</el-button>
                 </el-row>
             </div>
 <!--            表格-->
             <div>
-                <el-table :data="currentTaskList" style="width: 100%"
-                          :default-sort="{prop: 'endTime', order: 'ascending'}">
+                <el-table :data="currentTaskList"
+                          :row-key="getRowKey"
+                          :row-class-name="tableRowClassName"
+                          :expand-row-keys="expandRowKeys"
+                          style="width: 100%"
+                          :default-sort="{prop: 'endTime', order: 'ascending'}"
+                          @row-click="handleClickTable">
 
                     <el-table-column type="expand">
                         <template slot-scope="props">
                             <el-form lable-position="left">
+                                <el-form-item label="任务ID">
+                                    <span>{{props.row.id}}</span>
+                                </el-form-item>
                                 <el-form-item label="任务描述">
                                     <span>{{props.row.description}}</span>
                                 </el-form-item>
@@ -36,7 +46,7 @@
                     </el-table-column>
 
                     <el-table-column prop="requester" label="发布者" width="150"></el-table-column>
-                    <el-table-column prop="title" label="任务" width="300"></el-table-column>
+                    <el-table-column prop="title" label="任务标题" width="300"></el-table-column>
                     <el-table-column prop="type" label="类型" width="100"
                                      :formatter="formatTaskType" sortable></el-table-column>
                     <el-table-column prop="schedule" label="进度" width="100"
@@ -53,7 +63,7 @@
                         <template slot-scope="scope">
                             <el-button
                                     size="mini"
-                                    @click="handleWork(scope.$index, scope.row)"
+                                    @click="handleContinueWork(scope.$index, scope.row)"
                             >继续工作</el-button>
                         </template>
                     </el-table-column>
@@ -61,7 +71,7 @@
                 </el-table>
             </div>
 <!--            分页栏-->
-            <div style="text-align: center">
+            <div style="margin-top: 15px;text-align: right">
                 <el-pagination
                         background
                         @size-change="handlePageSizeChange"
@@ -156,7 +166,9 @@
                     disabledDate(time) {
                         return time.getTime() <= Date.now();
                     },
-                }
+                },
+
+                expandRowKeys: []
             }
         },
         mounted() {
@@ -165,8 +177,16 @@
             })
         },
         methods: {
-            handleAccept(index, row) {
-                console.log(index, row);
+            handleClickTable(row, event, index) {
+                if (this.expandRowKeys.indexOf(row.id) < 0) {
+                    this.expandRowKeys.push(row.id);
+                } else {
+                    this.expandRowKeys.splice(this.expandRowKeys.indexOf(row.id), 1);
+                }
+            },
+            handleContinueWork(index, row) {
+                let url = '/' + 'worker_' + row.type;
+                this.$router.push(url);
             },
             handlePageSizeChange(newPageSize) {
                 this.pageSize = newPageSize;
@@ -260,10 +280,25 @@
             formatDateFromTimestamp(row, column, cellValue, index) {
                 return unixTimeToDate(cellValue);
             },
+            getRowKey(row){
+                return row.id;
+            },
+            tableRowClassName(row, rowIndex) {
+                if (rowIndex % 2 === 1) {
+                    return 'success-row';
+                }
+                return '';
+            }
         }
     }
 </script>
 
-<style scoped>
+<style>
+    .element-box {
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+    }
 
+    .el-table .success-row {
+        background: oldlace;
+    }
 </style>

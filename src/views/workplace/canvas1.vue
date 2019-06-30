@@ -9,6 +9,9 @@
         <div class="buttonPosition">
             <el-button class="fa fa-arrow-left" @click="previewImg"></el-button>
             <el-button class="fa fa-arrow-right" @click="nextImg"></el-button>
+            <el-button v-if="theLast" type="success" @click="pass">通过</el-button>
+            <el-button v-if="theLast"  type="warning" @click="reject">驳回</el-button>
+            <el-button v-if="theLast" type="danger" @click="abolish">废弃</el-button>
             <el-button v-if="theLast" @click="returnToReviewPage">返回</el-button>
             <p>{{currentIndex}}/{{totalNum}}</p>
         </div>
@@ -21,6 +24,45 @@
         </div>
 
     </div>
+
+    <el-dialog title="评分" :visible.sync="showRate" width="15%" :close-on-click-modal="false"
+               :close-on-press-escape="false">
+        <el-rate
+                v-model="rate"
+                :colors="colors">
+        </el-rate>
+
+        <div slot="footer" class="dialog-footer">
+            <el-button type="success" @click="showPassMessage">确认</el-button>
+            <el-button type="primary" @click="showRate = false">取消</el-button>
+        </div>
+
+    </el-dialog>
+
+    <el-dialog title="驳回确定" :visible.sync="rejectConfirmInfo" width="30%" :close-on-click-modal="false"
+               :close-on-press-escape="false">
+        <span>您确定驳回吗，一旦操作，不可撤销</span>
+
+        <div slot="footer" class="dialog-footer">
+            <el-button type="danger" @click="showRejectInfo">确认</el-button>
+            <el-button type="primary" @click="rejectConfirmInfo = false">取消</el-button>
+        </div>
+
+    </el-dialog>
+
+
+
+
+    <el-dialog title="废弃确定" :visible.sync="abolishConfirmInfo" width="30%" :close-on-click-modal="false"
+               :close-on-press-escape="false">
+        <span>您确定废弃吗，一旦操作，不可撤销</span>
+
+        <div slot="footer" class="dialog-footer">
+            <el-button type="danger" @click="showAbolishInfo">确认</el-button>
+            <el-button type="primary" @click="abolishConfirmInfo = false">取消</el-button>
+        </div>
+
+    </el-dialog>
 
 
 
@@ -112,12 +154,59 @@
                 ],
 
 
-                currentImageUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3443176063,4021563566&fm=27&gp=0.jpg"
+                currentImageUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3443176063,4021563566&fm=27&gp=0.jpg",
+
+                rate:null,
+                colors: ['#99A9BF', '#F7BA2A', '#FF9900'],
+                showRate:false,
+                rejectConfirmInfo:false,
+                abolishConfirmInfo:false,
 
             }
         },
 
         methods:{
+            showPassMessage(){
+                this.$message({
+                    message: '已通过',
+                    type: 'success'
+                });
+                this.showRate = false;
+                this.$router.push({ path: '/checkSubmittedLabel' });
+            },
+            pass(){
+                this.showRate = true;
+            },
+
+            showRejectInfo(){
+                this.$message({
+                    message: '已驳回',
+                    type: 'success'
+                });
+                this.rejectConfirmInfo = false;
+                this.$router.push({ path: '/checkSubmittedLabel' });
+            },
+            reject(){
+                this.rejectConfirmInfo = true;
+            },
+
+            showAbolishInfo(){
+                this.$message({
+                    message: '已废弃',
+                    type: 'success'
+                });
+
+                this.abolishConfirmInfo  =false;
+                this.$router.push({ path: '/checkSubmittedLabel' });
+            },
+
+            abolish(){
+                this.abolishConfirmInfo = true;
+            },
+
+
+
+
             previewImg(){
                 if(this.currentIndex>=2) {
                     this.currentIndex--;

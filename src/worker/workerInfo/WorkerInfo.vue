@@ -102,8 +102,8 @@
             return {
                 worker: {
                     ID: 'A2GCPZ6HVH27EN',
-                    name: '工人1',
-                    prestige: 100,
+                    name: '张某某',
+                    prestige: 93,
                     balance: 324.56,
                     phone: '18898765432',
                     mail: 'kksk@jq.com',

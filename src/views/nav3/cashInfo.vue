@@ -19,22 +19,25 @@
 			<el-table-column label="原因" prop="reason">
 			</el-table-column>
 
-			<el-table-column label="">
-				<template slot-scope="scope">
-					<el-button
-							size="mini"
-							type="success"
-							@click="confirm(scope.row)">已了解
-					</el-button>
-				</template>
-			</el-table-column>
+<!--			<el-table-column label="">-->
+<!--				<template slot-scope="scope">-->
+<!--					<el-button-->
+<!--							size="mini"-->
+<!--							type="success"-->
+<!--							@click="confirm(scope.row)">已了解-->
+<!--					</el-button>-->
+<!--				</template>-->
+<!--			</el-table-column>-->
 
 		</el-table>
 
 		<br>
 		<el-pagination
-				background
-				layout="prev, pager, next"
+				@size-change="handleSizeChange"
+				@current-change="handleCurrentChange"
+				:current-page.sync="currentPage3"
+				:page-size="100"
+				layout="prev, pager, next, jumper"
 				:total="1000">
 		</el-pagination>
 
@@ -58,19 +61,22 @@
 			<el-table-column label="原因" prop="reason">
 			</el-table-column>
 
-			<el-table-column label="">
-				<template slot-scope="scope">
-					<el-button
-							size="mini"
-							type="success"
-							@click="confirm(scope.row)">已了解
-					</el-button>
-				</template>
-			</el-table-column>
+<!--			<el-table-column label="">-->
+<!--				<template slot-scope="scope">-->
+<!--					<el-button-->
+<!--							size="mini"-->
+<!--							type="success"-->
+<!--							@click="confirm(scope.row)">已了解-->
+<!--					</el-button>-->
+<!--				</template>-->
+<!--			</el-table-column>-->
 		</el-table>
 		<el-pagination
-				background
-				layout="prev, pager, next"
+				@size-change="handleSizeChange"
+				@current-change="handleCurrentChange"
+				:current-page.sync="currentPage3"
+				:page-size="100"
+				layout="prev, pager, next, jumper"
 				:total="1000">
 		</el-pagination>
 	</section>
@@ -84,6 +90,7 @@
 
         data(){
             return{
+				currentPage3:false,
                 cashInfo:[
                     {
                         messageId:1,
@@ -112,9 +119,28 @@
 					message: '已了解',
 					type: 'success'
 				});
-            }
-        }
-    }
+            },
+
+			handleSizeChange(){
+
+			}
+
+        },
+
+        mounted() {
+        	for(let i=4;i<7;i++) {
+        		let a = {
+					messageId:i,
+					type:"收入",
+					quantity:100,
+					reason:"充值",
+				};
+				this.cashInfo.push(a);
+
+			}
+
+		}
+	}
 </script>
 
 <style scoped>

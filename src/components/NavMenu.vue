@@ -11,7 +11,7 @@
             </el-col>
             <el-col :span="4" class="userinfo">
                 <el-dropdown trigger="hover">
-                    <span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /> {{sysUserName}}</span>
+                    <span class="el-dropdown-link userinfo-inner"><img src='https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3443176063,4021563566&fm=27&gp=0.jpg' /> {{sysUserName}}</span>
                     <el-dropdown-menu slot="dropdown">
                         <!--						<el-dropdown-item>我的消息</el-dropdown-item>-->
                         <!--						<el-dropdown-item>设置</el-dropdown-item>-->
@@ -54,8 +54,8 @@
             </aside>
             <section class="content-container">
                 <div class="grid-content bg-purple-light">
-                    <el-col :span="24" class="breadcrumb-container">
-                        <strong class="title">{{$route.name}}</strong>
+                    <el-col :span="24" class="breadcrumb-container" style="margin-bottom: 15px">
+                        <strong class="title" style="position: center">{{$route.name}}</strong>
                         <el-breadcrumb separator="/" class="breadcrumb-inner">
                             <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
                                 {{ item.name }}
@@ -114,7 +114,8 @@
                     //type: 'warning'
                 }).then(() => {
                     sessionStorage.removeItem('user');
-                    _this.$router.push('/login');
+                    // _this.$router.push('/login');
+                    _this.$router.push('/');
                 }).catch(() => {
 
                 });
@@ -135,8 +136,8 @@
             if (user) {
                 user = JSON.parse(user);
                 this.sysUserName = user.name || '';
-                //this.sysUserAvatar = user.avatar || '';
-                this.sysUserAvatar ="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3443176063,4021563566&fm=27&gp=0.jpg";
+              //  this.sysUserAvatar = user.avatar || '';
+               //this.sysUserAvatar =";
             }
         }
     }

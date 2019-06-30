@@ -1,10 +1,5 @@
 export let taskStatuses = [
     {
-        value: 'publishing',
-        label: '发布中',
-        tagTypeName: '',
-    },
-    {
         value: 'verifying',
         label: '审核中',
         tagTypeName: 'primary',
@@ -22,6 +17,8 @@ export let taskStatuses = [
 ];
 
 export let taskStatusValues = [];
-taskStatusValues.forEach((item) => {
+taskStatuses.forEach((item) => {
     taskStatusValues.push(item.value);
 });
+
+export let searchSubmittedTaskStatuses = taskStatuses;
