@@ -59,13 +59,13 @@
         props: ['urlAfterSubmit'],
         data(){
             return {
-                currentImageUrl:   "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2922170376,2371336021&fm=27&gp=0.jpg",
+                currentImageUrl:   "http://static.runoob.com/images/demo/demo4.jpg",
                 currentIndex: 1,
                 imgUrl: [
+                    "http://static.runoob.com/images/demo/demo4.jpg",
                     "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2922170376,2371336021&fm=27&gp=0.jpg",
                     "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4117698333,1699709581&fm=27&gp=0.jpg",
                     "http://static.runoob.com/images/demo/demo3.jpg",
-                    "http://static.runoob.com/images/demo/demo4.jpg",
                 ],
                 //当前页的tags
                 tagsInShowing:[],

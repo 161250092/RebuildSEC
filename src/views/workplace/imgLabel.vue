@@ -4,6 +4,9 @@
         <img :src=currentImageUrl  class="canvas_bgp">
 
         <div class="buttonPosition">
+            <div class="block" style="margin-bottom: 15px">
+                <el-progress :percentage="thickness"></el-progress>
+            </div>
             <el-button class="fa fa-arrow-left" @click="previewImg"></el-button>
             <el-button class="fa fa-arrow-right" @click="nextImg"></el-button>
             <el-button @click="submit" type="success" v-if="canSubmit">提交</el-button>
@@ -42,12 +45,12 @@
         props: ['urlAfterSubmit'],
         data() {
             return {
-                currentImageUrl:   "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2922170376,2371336021&fm=27&gp=0.jpg",
+                currentImageUrl:   "http://static.runoob.com/images/demo/demo3.jpg",
                 currentIndex: 1,
                 imgUrl: [
+                    "http://static.runoob.com/images/demo/demo3.jpg",
                     "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2922170376,2371336021&fm=27&gp=0.jpg",
                     "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4117698333,1699709581&fm=27&gp=0.jpg",
-                    "http://static.runoob.com/images/demo/demo3.jpg",
                     "http://static.runoob.com/images/demo/demo4.jpg",
                 ],
                 //当前页的tags
@@ -56,8 +59,8 @@
                 tagsInfo:[
                 ],
                 tag:"",
-                canSubmit:false
-
+                canSubmit:false,
+                thickness: 0,
             }
 
         },
@@ -116,30 +119,40 @@
                     this.currentIndex--;
                     this.currentImageUrl = this.imgUrl[this.currentIndex - 1];
                     this.tagsInShowing = this.tagsInfo[this.currentIndex - 1];
-                } else
+                } else {
                     this.$message({
                         message: '第一张',
                         type: 'warning'
                     });
+                }
 
-
+                this.thickness = this.currentIndex * 100 / this.imgUrl.length;
             },
             nextImg() {
                 if (this.currentIndex <= this.imgUrl.length-1) {
                     this.currentIndex++;
                     this.currentImageUrl = this.imgUrl[this.currentIndex - 1];
                     this.tagsInShowing = this.tagsInfo[this.currentIndex - 1];
-                } else
+                } else {
                     this.$message({
                         message: '最后一张',
                         type: 'warning'
                     });
+                }
 
+                this.thickness = this.currentIndex * 100 / this.imgUrl.length;
             }
+        },
 
+        mounted(){
+            this.$nextTick(function () {
+                for(let i=0;i<this.imgUrl.length;i++){
+                    this.tagsInfo.push([]);
+                }
 
+                this.thickness = this.currentIndex * 100 / this.imgUrl.length;
+            });
         }
-
     }
 </script>
 
