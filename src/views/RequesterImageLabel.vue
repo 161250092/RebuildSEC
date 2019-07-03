@@ -1,9 +1,9 @@
 <template>
-    <img-label v-bind:url-after-submit="'/workerTasks'"></img-label>
+    <img-label v-bind:url-after-submit="'/publishTask'"></img-label>
 </template>
 
 <script>
-    import ImgLabel from "../../views/workplace/imgLabel";
+    import ImgLabel from "./workplace/imgLabel";
     export default {
         name: "WorkerImageLabel",
         components: {ImgLabel}

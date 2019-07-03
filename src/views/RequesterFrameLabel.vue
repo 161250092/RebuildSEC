@@ -1,9 +1,9 @@
 <template>
-    <frame-label v-bind:url-after-submit="'/workerTasks'"></frame-label>
+    <frame-label v-bind:url-after-submit="'/publishTask'"></frame-label>
 </template>
 
 <script>
-    import FrameLabel from "../../views/workplace/frameLabel";
+    import FrameLabel from "./workplace/frameLabel";
     export default {
         name: "WorkerFrameLabel",
         components: {FrameLabel}

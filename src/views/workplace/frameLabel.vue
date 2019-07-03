@@ -4,6 +4,14 @@
             <span class="demonstration">颜色选择器</span>
             <el-color-picker v-model="color" @change="changeColor"></el-color-picker>
         </div>
+<!--        <div class="toolBar">-->
+<!--            <el-row type="flex" class="row-bg" justify="space-between">-->
+<!--                <el-col><span class="demonstration">颜色选择器</span></el-col>-->
+<!--                <el-col><el-color-picker v-model="color" @change="changeColor"></el-color-picker></el-col>-->
+<!--                <el-col><span class="demonstration">颜色选择器</span></el-col>-->
+<!--                <el-col><el-slider class="block" v-model="thickness" @change="changeThickness"></el-slider></el-col>-->
+<!--            </el-row>-->
+<!--        </div>-->
         <canvas id="canvas" width="650" height="414" class="canvas"
                 v-on:mousedown="startDrawing"
                 v-on:mouseup="stopDrawing"
@@ -13,8 +21,8 @@
         <img :src=currentImageUrl  class="canvas_bgp">
 
         <div class="buttonPosition">
-            <div class="block">
-                <el-slider v-model="thickness" @change="changeThickness"></el-slider>
+            <div class="block" style="margin-bottom: 15px">
+                <el-progress :percentage="thickness"></el-progress>
             </div>
             <el-button class="fa fa-arrow-left" @click="previewImg"></el-button>
             <el-button class="fa fa-arrow-right" @click="nextImg"></el-button>
@@ -54,6 +62,7 @@
 <script>
     export default {
         name: "frameLabel",
+        props: ['urlAfterSubmit'],
         data(){
             return {
                 currentImageUrl:   "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2922170376,2371336021&fm=27&gp=0.jpg",
@@ -61,6 +70,8 @@
                 imgUrl: [
                     "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2922170376,2371336021&fm=27&gp=0.jpg",
                     "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4117698333,1699709581&fm=27&gp=0.jpg",
+                    "http://static.runoob.com/images/demo/demo3.jpg",
+                    "http://static.runoob.com/images/demo/demo4.jpg",
                 ],
                 //当前页的tags
                 tagsInShowing:[],
@@ -74,7 +85,7 @@
                 rectsInShow:[],
                 rectsInfo:[],
                 color:'#409EFF',
-                thickness: 20,
+                thickness: 0,
 
                 canvas:undefined,
                 canvasContext:undefined,
@@ -212,6 +223,7 @@
                     message: '提交成功',
                     type: 'success'
                 });
+                this.$router.push(this.urlAfterSubmit);
             },
 
 
@@ -233,6 +245,8 @@
                         type: 'warning'
                     });
                 }
+
+                this.thickness = this.currentIndex * 100 / this.imgUrl.length;
             },
 
 
@@ -254,6 +268,7 @@
                     });
                 }
 
+                this.thickness = this.currentIndex * 100 / this.imgUrl.length;
             },
 
             drawRects(){
@@ -269,17 +284,21 @@
         },
 
         mounted(){
-            for(let i=0;i<this.imgUrl.length;i++){
-                this.rectsInfo.push([]);
-            }
+            this.$nextTick(function () {
+                for(let i=0;i<this.imgUrl.length;i++){
+                    this.rectsInfo.push([]);
+                }
 
-            this.canvas = document.getElementById("canvas");
-            //获得2维绘图的上下文
-            this.canvasContext = this.canvas.getContext("2d");
-            //设置线宽
-            this.canvasContext.lineWidth = this.thickness/20;
-            //设置线的颜色
-            this.canvasContext.strokeStyle = this.color;
+                this.canvas = document.getElementById("canvas");
+                //获得2维绘图的上下文
+                this.canvasContext = this.canvas.getContext("2d");
+                // //设置线宽
+                // this.canvasContext.lineWidth = this.thickness/20;
+                //设置线的颜色
+                this.canvasContext.strokeStyle = this.color;
+
+                this.thickness = this.currentIndex * 100 / this.imgUrl.length;
+            });
         }
     }
 </script>

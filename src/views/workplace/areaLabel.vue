@@ -16,8 +16,8 @@
         <img :src=currentImageUrl  class="canvas_bgp">
 
         <div class="buttonPosition">
-            <div class="block">
-                <el-slider v-model="thickness" @change="changeThickness"></el-slider>
+            <div class="block" style="margin-bottom: 15px">
+                <el-progress :percentage="thickness"></el-progress>
             </div>
             <el-button class="fa fa-arrow-left" @click="previewImg"></el-button>
             <el-button class="fa fa-arrow-right" @click="nextImg"></el-button>
@@ -56,7 +56,7 @@
 <script>
     export default {
         name: "areaLabel",
-
+        props: ['urlAfterSubmit'],
         data(){
             return {
                 currentImageUrl:   "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2922170376,2371336021&fm=27&gp=0.jpg",
@@ -64,6 +64,8 @@
                 imgUrl: [
                     "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2922170376,2371336021&fm=27&gp=0.jpg",
                     "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4117698333,1699709581&fm=27&gp=0.jpg",
+                    "http://static.runoob.com/images/demo/demo3.jpg",
+                    "http://static.runoob.com/images/demo/demo4.jpg",
                 ],
                 //当前页的tags
                 tagsInShowing:[],
@@ -194,6 +196,7 @@
                     message: '提交成功',
                     type: 'success'
                 });
+                this.$router.push(this.urlAfterSubmit);
             },
             previewImg() {
                // this.canvasContext.clearRect(0,0,this.canvas.width,this.canvas.height);
@@ -211,6 +214,8 @@
                         type: 'warning'
                     });
                 }
+
+                this.thickness = this.currentIndex * 100 / this.imgUrl.length;
 
             },
             nextImg() {
@@ -230,6 +235,7 @@
                     });
                 }
 
+                this.thickness = this.currentIndex * 100 / this.imgUrl.length;
 
             },
 
@@ -264,10 +270,12 @@
             this.canvas = document.getElementById("canvas");
             //获得2维绘图的上下文
             this.canvasContext = this.canvas.getContext("2d");
-            //设置线宽
-            this.canvasContext.lineWidth = this.thickness/20;
+            // //设置线宽
+            // this.canvasContext.lineWidth = this.thickness/20;
             //设置线的颜色
             this.canvasContext.strokeStyle = this.color;
+
+            this.thickness = this.currentIndex * 100 / this.imgUrl.length;
         }
 
     }

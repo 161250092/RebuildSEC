@@ -18,11 +18,11 @@
                         </el-form-item>
 
                         <el-form-item  label="声望">
-                            <span>{{worker.prestige}} </span>
+                            <span>{{worker.prestige}}/100</span>
                         </el-form-item>
                         
                         <el-form-item  label="余额">
-                            <span>{{worker.balance}} </span>
+                            <span>{{worker.balance}}元</span>
                         </el-form-item>
 
                         <el-form-item  label="邮箱">

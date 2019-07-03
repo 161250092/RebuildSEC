@@ -39,6 +39,7 @@
 <script>
     export default {
         name: "imgLabel",
+        props: ['urlAfterSubmit'],
         data() {
             return {
                 currentImageUrl:   "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2922170376,2371336021&fm=27&gp=0.jpg",
@@ -46,6 +47,8 @@
                 imgUrl: [
                     "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2922170376,2371336021&fm=27&gp=0.jpg",
                     "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4117698333,1699709581&fm=27&gp=0.jpg",
+                    "http://static.runoob.com/images/demo/demo3.jpg",
+                    "http://static.runoob.com/images/demo/demo4.jpg",
                 ],
                 //当前页的tags
                 tagsInShowing:[],
@@ -104,6 +107,7 @@
                     message: '提交成功',
                     type: 'success'
                 });
+                this.$router.push(this.urlAfterSubmit);
             },
 
 

@@ -21,6 +21,9 @@ import frameLabel from '../../../views/workplace/frameLabel'
 //import Page5 from '../../views/nav2/Page5.vue'
 import cashInfo from '../../../views/nav3/cashInfo.vue'
 import workInfo from '../../../views/nav3/workInfo.vue'
+import RequesterImageLabel from "../../../views/RequesterImageLabel";
+import RequesterFrameLabel from "../../../views/RequesterFrameLabel";
+import RequesterAreaLabel from "../../../views/RequesterAreaLabel";
 
 export default (
 [
@@ -92,10 +95,9 @@ export default (
         iconCls: 'fa fa-user-circle',
         hidden:true,
         children:[
-            { path: '/imgLabel', component: imgLabel, name: '图片标注' },
-            { path: '/frameLabel', component:frameLabel,name:'方框标注'},
-            { path: '/areaLabel',component:areaLabel,name:'区域标注'}
-
+            { path: '/imgLabel', component: RequesterImageLabel, name: '图片标注' },
+            { path: '/frameLabel', component:RequesterFrameLabel,name:'方框标注'},
+            { path: '/areaLabel',component:RequesterAreaLabel,name:'区域标注'}
         ]
 
     },
